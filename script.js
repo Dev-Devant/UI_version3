@@ -55,3 +55,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500);
     }
 });
+
+
+
+function updateHeader() {
+    const userNameElement = document.getElementById('userName');
+    const userTokensElement = document.getElementById('userTokens');
+  
+    if (userNameElement && state.user && state.user.name) {
+      userNameElement.textContent = state.user.name;
+    }
+  
+    if (userTokensElement && state.user && state.user.tokens !== undefined) {
+      userTokensElement.textContent = `${state.user.tokens} tokens`;
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', updateHeader);

@@ -1,50 +1,123 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mi Página Web</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>Mi Página Web</h1>
-    </header>
-    
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <script src="main.js"></script>
+
+    <style>
+      [data-tooltip] {
+        position: relative;
+        cursor: pointer;
+      }
+
+      [data-tooltip]::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        background-color: #333;
+        color: #fff;
+        padding: 4px 8px;
+        border-radius: 4px;
+        white-space: nowrap;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease-in-out;
+        z-index: 10;
+      }
+
+      [data-tooltip]:hover::after {
+        opacity: 1;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background-color: #333;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo {
+        height: 40px;
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .user-name {
+        font-weight: bold;
+      }
+
+      .user-tokens {
+        color: #666;
+      }
+
+      .user-avatar {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+      }
+    </style>
+
+<header class="header">
+    <div class="logo-container">
+      <img src="/Logo Artek.png" alt="Logo" class="logo" />
+    </div>
+    <div class="user-info">
+      <span class="user-name" id="userName"></span>
+      <span class="user-tokens" id="userTokens"></span>
+      <img src="/Avatar.png?height=24&width=24" alt="User Avatar" class="user-avatar" />
+    </div>
+  </header>
     <nav id="sidebar">
-        <button id="toggleSidebar" aria-label="Toggle Sidebar">
-            <span class="arrow">&#9664;</span>
-        </button>
-        <button class="nav-button" data-section="1">Sección 1</button>
-        <button class="nav-button" data-section="2">Sección 2</button>
-        <button class="nav-button" data-section="3">Sección 3</button>
-        <button class="nav-button" data-section="4">Sección 4</button>
-        <button class="nav-button" data-section="5">Sección 5</button>
+      <button id="toggleSidebar" aria-label="Toggle Sidebar">
+        <span class="arrow">&#9664;</span>
+      </button>
+      <button class="nav-button" data-section="1">Sección 1</button>
+      <button class="nav-button" data-section="2">Sección 2</button>
+      <button class="nav-button" data-section="3">Sección 3</button>
+      <button class="nav-button" data-section="4">Sección 4</button>
+      <button class="nav-button" data-section="5">Sección 5</button>
     </nav>
-    
+
     <main>
-        <section id="section1" class="active">
-            <h2>Sección 1</h2>
-            <p>Contenido de la sección 1</p>
-        </section>
-        <section id="section2">
-            <h2>Sección 2</h2>
-            <p>Contenido de la sección 2</p>
-        </section>
-        <section id="section3">
-            <h2>Sección 3</h2>
-            <p>Contenido de la sección 3</p>
-        </section>
-        <section id="section4">
-            <h2>Sección 4</h2>
-            <p>Contenido de la sección 4</p>
-        </section>
-        <section id="section5">
-            <h2>Sección 5</h2>
-            <p>Contenido de la sección 5</p>
-        </section>
+      <section id="section1" class="active">
+        <h2>Sección 1</h2>
+        <p>Contenido de la sección 1</p>
+      </section>
+      <section id="section2">
+        <h2>Sección 2</h2>
+        <p>Contenido de la sección 2</p>
+      </section>
+      <section id="section3">
+        <h2>Sección 3</h2>
+        <p>Contenido de la sección 3</p>
+      </section>
+      <section id="section4">
+        <h2>Sección 4</h2>
+        <p>Contenido de la sección 4</p>
+      </section>
+      <section id="section5">
+        <h2>Sección 5</h2>
+        <p>Contenido de la sección 5</p>
+      </section>
     </main>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
