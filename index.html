@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Web</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Mi Página Web</h1>
+    </header>
+    
+    <nav id="sidebar">
+        <button id="toggleSidebar" aria-label="Toggle Sidebar">
+            <span class="arrow">&#9664;</span>
+        </button>
+        <button class="nav-button" data-section="1">Sección 1</button>
+        <button class="nav-button" data-section="2">Sección 2</button>
+        <button class="nav-button" data-section="3">Sección 3</button>
+        <button class="nav-button" data-section="4">Sección 4</button>
+        <button class="nav-button" data-section="5">Sección 5</button>
+    </nav>
+    
+    <main>
+        <section id="section1" class="active">
+            <h2>Sección 1</h2>
+            <p>Contenido de la sección 1</p>
+        </section>
+        <section id="section2">
+            <h2>Sección 2</h2>
+            <p>Contenido de la sección 2</p>
+        </section>
+        <section id="section3">
+            <h2>Sección 3</h2>
+            <p>Contenido de la sección 3</p>
+        </section>
+        <section id="section4">
+            <h2>Sección 4</h2>
+            <p>Contenido de la sección 4</p>
+        </section>
+        <section id="section5">
+            <h2>Sección 5</h2>
+            <p>Contenido de la sección 5</p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
