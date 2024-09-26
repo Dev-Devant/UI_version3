@@ -29,6 +29,7 @@ const languages = [
 let courses = [];
 
 let state = {
+    currentState: 'CreateMode',
     validatedAndAbilitadedUser : false,
     creatingmode : true,
     courseSelectorMode: false,
