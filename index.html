@@ -95,10 +95,147 @@
     </nav>
 
     <main>
-      <section id="section1" class="active">
-        <h2>Sección 1</h2>
-        <p>Contenido de la sección 1</p>
-      </section>
+            <!-- SEccion para descubrir cursos o buscar -------------------------------->
+
+            <section id="section1" class="active">
+              <style>
+                .custom-button {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center; /* Alinea los ítems dentro del botón */
+                  gap: 10px;
+                  padding: 10px 20px;
+                  width: 20%; /* Define el ancho igual para todos */
+                  background-color: #042a2b; /* Color primario */
+                  color: #fff;
+                  border: none;
+                  border-radius: 8px;
+                  cursor: pointer;
+                  transition: background-color 0.3s ease;
+                  font-size: 16px;
+                  font-weight: bold;
+                }
+            
+                .custom-button:hover {
+                  background-color: #023047; /* Color al pasar el mouse */
+                }
+            
+                .custom-button svg {
+                  stroke: #fff; /* Color del ícono */
+                }
+            
+                .custom-button span {
+                  font-size: 18px;
+                }
+            
+                .custom-button:hover span {
+                  color: #fff;
+                }
+            
+                .button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* Alinea los botones en la parte superior */
+  justify-content: center;
+  gap: 20px;
+  min-height: 20vh;
+}
+
+              </style>
+            
+              <h2>Descubre</h2>
+            
+              <div class="button-container">
+                <button id="createCourse" class="custom-button">
+                  <!-- Ícono de persona para "Para Ti" -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="7" r="4"></circle>
+                    <path d="M5.5 21a7.5 7.5 0 0 1 13 0"></path>
+                  </svg>
+                  <span>Para Ti</span>
+                </button>
+                
+                <button id="continueCourse" class="custom-button">
+                  <!-- Ícono de estrella para "Populares" -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <span>Populares</span>
+                </button>
+                
+                <button id="getHelp" class="custom-button">
+                  <!-- Ícono de ruta para "Paths" -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a10 10 0 0 1 0 20"></path>
+                    <path d="M12 2L15 8L12 14"></path>
+                    <path d="M12 14L9 20L12 26"></path>
+                  </svg>
+                  <span>Paths</span>
+                </button>
+                
+                <button id="getHelp" class="custom-button">
+                  <!-- Ícono de trofeo para "Mejor puntuados" -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 3H6v2a6 6 0 0 0 12 0V3z"></path>
+                    <path d="M5 9a4 4 0 0 1 0-8h2v6a2 2 0 0 1-2 2"></path>
+                    <path d="M19 9a4 4 0 0 0 0-8h-2v6a2 2 0 0 0 2 2"></path>
+                    <path d="M12 17v4"></path>
+                    <path d="M7 22h10"></path>
+                  </svg>
+                  <span>Mejor Puntuados</span>
+                </button>
+                
+              </div>
+              <div id="courseListContainer" style="width: 100%; padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+
+                <!-- Curso 1 -->
+                <div class="course-item" onclick="toggleCourseDetails(this)" style="background-color: #042a2b; color: white; padding: 20px; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease;">
+                  <div class="course-summary" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                      <span class="course-id" style="color: #d3d3d3;">ID001</span>
+                      <h3 class="course-title" style="margin: 5px 0;">Curso de Programación en JS</h3>
+                      <p class="course-description">Aprende los fundamentos de JavaScript...</p>
+                      <span class="course-tags" style="font-size: 14px;">#programming #javascript</span>
+                    </div>
+                    <div class="course-rating">
+                      ★★★★☆ <!-- Rating estático por ahora -->
+                    </div>
+                    <button class="custom-button" style="margin-left: 20px;">Cursar</button>
+                  </div>
+              
+                  <div class="course-details" style="display: none; margin-top: 20px;">
+                    <h3 class="course-title">Curso de Programación en JS</h3>
+                    <p class="course-full-description">Este curso te llevará desde los conceptos básicos hasta técnicas avanzadas...</p>
+                    <span class="course-tags-list">#programming #javascript #frontend</span>
+                    <div class="course-rating">★★★★☆ (4.5/5)</div>
+                    <span class="course-students">Estudiantes: 1500</span>
+                    <button class="custom-button">Cursar</button>
+                  </div>
+                </div>
+              
+                <!-- Puedes repetir este bloque para agregar más cursos -->
+              </div>
+              
+              <script>
+                // Función para desplegar los detalles del curso al hacer clic
+                function toggleCourseDetails(element) {
+                  const details = element.querySelector('.course-details');
+                  const summary = element.querySelector('.course-summary');
+              
+                  if (details.style.display === 'none' || details.style.display === '') {
+                    details.style.display = 'block'; // Muestra los detalles
+                    summary.style.display = 'none';  // Oculta el resumen
+                  } else {
+                    details.style.display = 'none'; // Oculta los detalles
+                    summary.style.display = 'block'; // Muestra el resumen
+                  }
+                }
+              </script>
+            </section>
+            
+            
+
+      <!-- SEccion para el chat -------------------------------->
       <section id="section2">
         <style>
         body, html {
