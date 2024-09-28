@@ -81,7 +81,11 @@
       <div class="user-info">
         <span class="user-name" id="userName"></span>
         <span class="user-tokens" id="userTokens"></span>
-        <img src="/Avatar.png?height=24&width=24" alt="User Avatar" class="user-avatar" />
+        <img
+          src="/Avatar.png?height=24&width=24"
+          alt="User Avatar"
+          class="user-avatar"
+        />
       </div>
     </header>
     <nav id="sidebar">
@@ -95,252 +99,325 @@
     </nav>
 
     <main>
-            <!-- SEccion para descubrir cursos o buscar -------------------------------->
+      <!-- SEccion para descubrir cursos o buscar -------------------------------->
 
-            <section id="section1" class="active">
-              <style>
-                .custom-button {
-                  display: flex;
-                  align-items: center;
-                  justify-content: center; /* Alinea los ítems dentro del botón */
-                  gap: 10px;
-                  padding: 10px 20px;
-                  width: 20%; /* Define el ancho igual para todos */
-                  background-color: #042a2b; /* Color primario */
-                  color: #fff;
-                  border: none;
-                  border-radius: 8px;
-                  cursor: pointer;
-                  transition: background-color 0.3s ease;
-                  font-size: 16px;
-                  font-weight: bold;
-                }
-            
-                .custom-button:hover {
-                  background-color: #023047; /* Color al pasar el mouse */
-                }
-            
-                .custom-button svg {
-                  stroke: #fff; /* Color del ícono */
-                }
-            
-                .custom-button span {
-                  font-size: 18px;
-                }
-            
-                .custom-button:hover span {
-                  color: #fff;
-                }
-            
-                .button-container {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start; /* Alinea los botones en la parte superior */
-  justify-content: center;
-  gap: 20px;
-  min-height: 20vh;
-}
+      <section id="section1" class="active">
+        <link rel="stylesheet" href="discoverStyle.css" />
 
-              </style>
-            
-              <h2>Descubre</h2>
-            
-              <div class="button-container">
-                <button id="createCourse" class="custom-button">
-                  <!-- Ícono de persona para "Para Ti" -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="7" r="4"></circle>
-                    <path d="M5.5 21a7.5 7.5 0 0 1 13 0"></path>
-                  </svg>
-                  <span>Para Ti</span>
-                </button>
-                
-                <button id="continueCourse" class="custom-button">
-                  <!-- Ícono de estrella para "Populares" -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                  </svg>
-                  <span>Populares</span>
-                </button>
-                
-                <button id="getHelp" class="custom-button">
-                  <!-- Ícono de ruta para "Paths" -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2a10 10 0 0 1 0 20"></path>
-                    <path d="M12 2L15 8L12 14"></path>
-                    <path d="M12 14L9 20L12 26"></path>
-                  </svg>
-                  <span>Paths</span>
-                </button>
-                
-                <button id="getHelp" class="custom-button">
-                  <!-- Ícono de trofeo para "Mejor puntuados" -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M18 3H6v2a6 6 0 0 0 12 0V3z"></path>
-                    <path d="M5 9a4 4 0 0 1 0-8h2v6a2 2 0 0 1-2 2"></path>
-                    <path d="M19 9a4 4 0 0 0 0-8h-2v6a2 2 0 0 0 2 2"></path>
-                    <path d="M12 17v4"></path>
-                    <path d="M7 22h10"></path>
-                  </svg>
-                  <span>Mejor Puntuados</span>
-                </button>
-                
+        <h2>Descubre</h2>
+
+        <div class="button-container">
+          <button id="createCourse" class="custom-button">
+            <!-- Ícono de persona para "Para Ti" -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="200"
+              height="200"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="0.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="7" r="4"></circle>
+              <path d="M5.5 21a7.5 7.5 0 0 1 13 0"></path>
+            </svg>
+            <span>Para Ti</span>
+          </button>
+
+          <button id="continueCourse" class="custom-button">
+            <!-- Ícono de estrella para "Populares" -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="200"
+              height="200"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="0.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+              ></polygon>
+            </svg>
+            <span>Populares</span>
+          </button>
+
+          <button id="getHelp" class="custom-button">
+            <!-- Ícono de ruta para "Paths" -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="200"
+              height="200"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="0.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 2a10 10 0 0 1 0 20"></path>
+              <path d="M12 2L15 8L12 14"></path>
+              <path d="M12 14L9 20L12 26"></path>
+            </svg>
+            <span>Paths</span>
+          </button>
+
+          <button id="getHelp" class="custom-button">
+            <!-- Ícono de trofeo para "Mejor puntuados" -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="200"
+              height="200"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="0.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 3H6v2a6 6 0 0 0 12 0V3z"></path>
+              <path d="M5 9a4 4 0 0 1 0-8h2v6a2 2 0 0 1-2 2"></path>
+              <path d="M19 9a4 4 0 0 0 0-8h-2v6a2 2 0 0 0 2 2"></path>
+              <path d="M12 17v4"></path>
+              <path d="M7 22h10"></path>
+            </svg>
+            <span>Mejor Puntuados</span>
+          </button>
+        </div>
+        <div
+          id="courseListContainer"
+          style="
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+          "
+        >
+          <!-- Curso 1 -->
+          <div
+            class="course-item"
+            onclick="toggleCourseDetails(this)"
+            style="
+              background-color: #042a2b;
+              color: white;
+              padding: 20px;
+              border-radius: 8px;
+              cursor: pointer;
+              transition: background-color 0.3s ease;
+            "
+          >
+            <div
+              class="course-summary"
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <div>
+                <span class="course-id" style="color: #d3d3d3">ID001</span>
+                <h3 class="course-title" style="margin: 5px 0">
+                  Curso de Programación en JS
+                </h3>
+                <p class="course-description">
+                  Aprende los fundamentos de JavaScript...
+                </p>
+                <span class="course-tags" style="font-size: 14px"
+                  >#programming #javascript</span
+                >
               </div>
-              <div id="courseListContainer" style="width: 100%; padding: 20px; display: flex; flex-direction: column; gap: 10px;">
-
-                <!-- Curso 1 -->
-                <div class="course-item" onclick="toggleCourseDetails(this)" style="background-color: #042a2b; color: white; padding: 20px; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease;">
-                  <div class="course-summary" style="display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                      <span class="course-id" style="color: #d3d3d3;">ID001</span>
-                      <h3 class="course-title" style="margin: 5px 0;">Curso de Programación en JS</h3>
-                      <p class="course-description">Aprende los fundamentos de JavaScript...</p>
-                      <span class="course-tags" style="font-size: 14px;">#programming #javascript</span>
-                    </div>
-                    <div class="course-rating">
-                      ★★★★☆ <!-- Rating estático por ahora -->
-                    </div>
-                    <button class="custom-button" style="margin-left: 20px;">Cursar</button>
-                  </div>
-              
-                  <div class="course-details" style="display: none; margin-top: 20px;">
-                    <h3 class="course-title">Curso de Programación en JS</h3>
-                    <p class="course-full-description">Este curso te llevará desde los conceptos básicos hasta técnicas avanzadas...</p>
-                    <span class="course-tags-list">#programming #javascript #frontend</span>
-                    <div class="course-rating">★★★★☆ (4.5/5)</div>
-                    <span class="course-students">Estudiantes: 1500</span>
-                    <button class="custom-button">Cursar</button>
-                  </div>
-                </div>
-              
-                <!-- Puedes repetir este bloque para agregar más cursos -->
+              <div class="course-rating">
+                ★★★★☆
+                <!-- Rating estático por ahora -->
               </div>
-              
-              <script>
-                // Función para desplegar los detalles del curso al hacer clic
-                function toggleCourseDetails(element) {
-                  const details = element.querySelector('.course-details');
-                  const summary = element.querySelector('.course-summary');
-              
-                  if (details.style.display === 'none' || details.style.display === '') {
-                    details.style.display = 'block'; // Muestra los detalles
-                    summary.style.display = 'none';  // Oculta el resumen
-                  } else {
-                    details.style.display = 'none'; // Oculta los detalles
-                    summary.style.display = 'block'; // Muestra el resumen
-                  }
-                }
-              </script>
-            </section>
-            
-            
+              <button class="custom-button" style="margin-left: 20px">
+                Cursar
+              </button>
+            </div>
+
+            <div class="course-details" style="display: none; margin-top: 20px">
+              <h3 class="course-title">Curso de Programación en JS</h3>
+              <p class="course-full-description">
+                Este curso te llevará desde los conceptos básicos hasta técnicas
+                avanzadas...
+              </p>
+              <span class="course-tags-list"
+                >#programming #javascript #frontend</span
+              >
+              <div class="course-rating">★★★★☆ (4.5/5)</div>
+              <span class="course-students">Estudiantes: 1500</span>
+              <button class="custom-buttonA">Cursar</button>
+            </div>
+          </div>
+
+          <!-- Puedes repetir este bloque para agregar más cursos -->
+        </div>
+
+        <script>
+          // Función para desplegar los detalles del curso al hacer clic
+          function toggleCourseDetails(element) {
+            const details = element.querySelector(".course-details");
+            const summary = element.querySelector(".course-summary");
+
+            if (
+              details.style.display === "none" ||
+              details.style.display === ""
+            ) {
+              details.style.display = "block"; // Muestra los detalles
+              summary.style.display = "none"; // Oculta el resumen
+            } else {
+              details.style.display = "none"; // Oculta los detalles
+              summary.style.display = "block"; // Muestra el resumen
+            }
+          }
+        </script>
+      </section>
 
       <!-- SEccion para el chat -------------------------------->
       <section id="section2">
         <style>
-        body, html {
-          margin: 0;
-          padding: 0;
-          height: 100%;
-          overflow: hidden;
-        }
-        
-        #app {
-          display: flex;
-          flex-direction: column;
-          height: 85vh;
-          background-color: #08090A;
-          color: #bbbec6;
-        }
-        
-        #chatContainer {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          max-width: 800px;
-          margin: 0 auto;
-          width: 100%;
-        }
-        
-        #chatMessages {
-          flex-grow: 1;
-          overflow-y: auto;
-          padding: 20px;
-          display: flex;
-          flex-direction: column;
-        }
-        
-        .message {
-          max-width: 70%;
-          margin-bottom: 10px;
-          padding: 10px;
-          border-radius: 20px;
-          word-wrap: break-word;
-        }
-        
-        .user {
-          align-self: flex-end;
-          background-color: #4bc6ff;
-          color: #08090A;
-        }
-        
-        .bot {
-          align-self: flex-start;
-          background-color: #2C2C2C;
-          color: #bbbec6;
-        }
-        
-        .input-area {
-          padding: 10px;
-          border-top: 1px solid #68696e;
-          background-color: #08090A;
-        }
-        
-        .input-container {
-          display: flex;
-          align-items: center;
-        }
-        
-        #messageInput {
-          flex-grow: 1;
-          padding: 10px;
-          border: 1px solid #68696e;
-          border-radius: 4px;
-          background-color: #1e1e1e;
-          color: #bbbec6;
-          resize: none;
-        }
-        
-        #sendMessage {
-          background: none;
-          border: none;
-          color: #bbbec6;
-          cursor: pointer;
-          padding: 5px;
-          margin-left: 5px;
-        }
-        
-        #sendMessage:hover {
-          color: #4bc6ff;
-        }
+          body,
+          html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+          }
+
+          #app {
+            display: flex;
+            flex-direction: column;
+            height: 85vh;
+            background-color: #08090a;
+            color: #bbbec6;
+          }
+
+          #chatContainer {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+          }
+
+          #chatMessages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+          }
+
+          .message {
+            max-width: 70%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 20px;
+            word-wrap: break-word;
+          }
+
+          .user {
+            align-self: flex-end;
+            background-color: #4bc6ff;
+            color: #08090a;
+          }
+
+          .bot {
+            align-self: flex-start;
+            background-color: #2c2c2c;
+            color: #bbbec6;
+          }
+
+          .input-area {
+            padding: 10px;
+            border-top: 1px solid #68696e;
+            background-color: #08090a;
+          }
+
+          .input-container {
+            display: flex;
+            align-items: center;
+          }
+
+          #messageInput {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #68696e;
+            border-radius: 4px;
+            background-color: #1e1e1e;
+            color: #bbbec6;
+            resize: none;
+          }
+
+          #sendMessage {
+            background: none;
+            border: none;
+            color: #bbbec6;
+            cursor: pointer;
+            padding: 5px;
+            margin-left: 5px;
+          }
+
+          #sendMessage:hover {
+            color: #4bc6ff;
+          }
         </style>
-      <div id="app">
-        <div id="chatContainer">
-          <div id="chatMessages"></div>
-          <div class="input-area">
-            <div class="input-container">
-              <button id="toggleVoice">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" x2="22" y1="2" y2="22"/><path d="M18.89 13.23A7.12 7.12 0 0 0 19 12v-2"/><path d="M5 10v2a7 7 0 0 0 12 5"/><path d="M15 9.34V5a3 3 0 0 0-5.68-1.33"/><path d="M9 9v3a3 3 0 0 0 5.12 2.12"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
-              </button>
-              <textarea id="messageInput" placeholder="Type a message..."></textarea>
-              <button id="sendMessage">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-              </button>
+        <div id="app">
+          <div id="chatContainer">
+            <div id="chatMessages"></div>
+            <div class="input-area">
+              <div class="input-container">
+                <button id="toggleVoice">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="2" x2="22" y1="2" y2="22" />
+                    <path d="M18.89 13.23A7.12 7.12 0 0 0 19 12v-2" />
+                    <path d="M5 10v2a7 7 0 0 0 12 5" />
+                    <path d="M15 9.34V5a3 3 0 0 0-5.68-1.33" />
+                    <path d="M9 9v3a3 3 0 0 0 5.12 2.12" />
+                    <line x1="12" x2="12" y1="19" y2="22" />
+                  </svg>
+                </button>
+                <textarea
+                  id="messageInput"
+                  placeholder="Type a message..."
+                ></textarea>
+                <button id="sendMessage">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-        <script src="Chat.js"></script>     
+        <script src="Chat.js"></script>
       </section>
       <section id="section3">
         <h2>Sección 3</h2>

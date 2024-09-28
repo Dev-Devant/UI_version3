@@ -1,0 +1,127 @@
+.custom-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #042a2b;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+  }
+
+  .custom-button:hover {
+    background-color: #023047; /* Color al pasar el mouse */
+  }
+
+  .custom-button svg {
+    stroke: #fff; /* Color del ícono */
+  }
+
+  .custom-button span {
+    font-size: 18px;
+  }
+
+  .custom-button:hover span {
+    color: #fff;
+  }
+  
+  .button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; /* Alinea los botones en la parte superior */
+    justify-content: center;
+    gap: 15px;
+    min-height: 20vh;
+  }
+  .button-container .custom-button {
+    width: 25vh; 
+    height: 13vh;
+    padding: 8px 16px;
+    font-size: 14px;
+}
+@media (max-width: 768px) {
+    .button-container .custom-button {
+        width: 45%; /* Hace los botones más anchos en móviles */
+        font-size: 12px; /* Reduce aún más la fuente en móviles si es necesario */
+    }
+}
+
+/*------------------------------------------------ */
+#courseListContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilos para cada item de curso */
+.course-item {
+    background-color: #042a2b;
+    color: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+    width: calc(33.333% - 20px); /* Tres columnas en pantallas grandes */
+    min-width: 250px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.course-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Estilos para el contenido del curso */
+.course-summary {
+    margin-bottom: 10px;
+}
+
+.course-id {
+    color: #d3d3d3;
+    font-size: 0.9em;
+}
+
+.course-title {
+    margin: 5px 0;
+    font-size: 1.2em;
+}
+
+.course-description {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+/* Botón dentro del curso */
+.custom-buttonA {
+    background-color: #5c8374;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-buttonA:hover {
+    background-color: #3a5048;
+}
+
+
+@media (max-width: 768px) {
+    .course-item {
+        width: calc(50% - 20px); /* Dos columnas en tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .course-item {
+        width: 100%; /* Una columna en móviles */
+    }
+}
