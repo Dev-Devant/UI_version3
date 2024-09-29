@@ -73,41 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
       button.addEventListener("click", () => handleButtonClick(id));
     }
   });
-
-  // Example courses data (replace this with your actual data fetching logic)
-  const exampleCourses = [
-    {
-      title: "Introduction to JavaScript",
-      description: "Learn the basics of JS",
-      rating: 4.5,
-    },
-    {
-      title: "Advanced CSS Techniques",
-      description: "Master modern CSS",
-      rating: 4.8,
-    },
-    {
-      title: "Web Accessibility Fundamentals",
-      description: "Create inclusive web experiences",
-      rating: 4.7,
-    },
-    {
-      title: "Web aaaaaaa Fundamentals",
-      description: "Create inclusive web experiences",
-      rating: 4.7,
-    },
-    {
-      title: "aaaaaa Accessibility Fundamentals",
-      description: "Create inclusive web experiences",
-      rating: 4.7,
-    },
-    {
-      title: "Web Accessibility aaaaaaaa",
-      description: "Create inclusive web experiences",
-      rating: 4.7,
-    },
-  ];
-
   // Create initial course list
-  createCourseListContainer(exampleCourses);
+  createCourseListContainer(discoverCoursesPreload.Recomend);
 });

@@ -73,102 +73,42 @@ if (localStorage.getItem('SessionKey')) {
     var currentKey = localStorage.getItem('SessionKey');
     checkSession(currentKey)
 } 
-function render() {
-    const app = document.getElementById('app');
-    app.innerHTML = '';    
-    if (!state.isLoggedIn) {
-        app.appendChild(createLoginForm());
-        return
-    } 
-    if (state.courseSelectorMode){
-        app.appendChild(createEnrrols());
-        if (state.showConfigurationMenu){
-            app.appendChild(createConfigurationMenu())
-        }
-        return
-    }
-    if (!state.mainMenuOpen){
-        app.appendChild(createMainInterface());
-        if (state.showConfigurationMenu){
-            app.appendChild(createConfigurationMenu())
-        }
-        return
-    }else{
-        app.appendChild(createMainMenu());
-        if (state.showConfigurationMenu){
-            app.appendChild(createConfigurationMenu())
-        }
-        return
-    }
-    
+*/
+
+
+let discoverCoursesPreload = {
+    Recomend : [
+            {
+              title: "Introduction to JavaScript",
+              description: "Learn the basics of JS",
+              rating: 4.5,
+            },
+            {
+              title: "Advanced CSS Techniques",
+              description: "Master modern CSS",
+              rating: 4.8,
+            },
+            {
+              title: "Web Accessibility Fundamentals",
+              description: "Create inclusive web experiences",
+              rating: 4.7,
+            },
+            {
+              title: "Web aaaaaaa Fundamentals",
+              description: "Create inclusive web experiences",
+              rating: 4.7,
+            },
+            {
+              title: "aaaaaa Accessibility Fundamentals",
+              description: "Create inclusive web experiences",
+              rating: 4.7,
+            },
+            {
+              title: "Web Accessibility aaaaaaaa",
+              description: "Create inclusive web experiences",
+              rating: 4.7,
+            },
+        ],
+
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    render();
-});
-
-let resizeTimeout;
-
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    state.bakgroundPlay = false
-    resizeTimeout = setTimeout(() => {
-        state.bakgroundPlay = true
-    }, 500);
-});
-
-// Event delegation for dynamically created elements
-document.addEventListener('click', (e) => {
-    if (e.target.id === 'showBillingMenu') {
-        state.showBillingMenu = true;
-        state.isUserMenuOpen = false;
-        render();
-    } 
-    if (e.target.id === 'showConfigurationMenu') {
-        state.showConfigurationMenu = true;
-        state.isUserMenuOpen = false;
-        render();
-    } 
-    if (e.target.id === 'logout') {
-        handleLogout();
-    } 
-    if (e.target.id === 'userLanguage') {
-        handleLanguageChange(e.target.value);
-    } 
-    if (e.target.id === 'closeBilling') {
-        state.showBillingMenu = false;
-        render();
-    } 
-    if (e.target.id === 'closeConfiguration') {
-        state.showConfigurationMenu = false;
-        render();
-    } 
-    if (e.target.id === 'upgradePlan') {
-        state.showSubscriptionOptions = true;
-        render();
-    } 
-    if (e.target.id === 'billingBack') {
-        if (state.selectedOption) {
-            state.selectedOption = null;
-        } else {
-            state.showSubscriptionOptions = false;
-        }
-        render();
-    } 
-    if (e.target.closest('.grid-cols-1')) {
-        const optionId = e.target.closest('.grid-cols-1').dataset.optionId;
-        state.selectedOption = subscriptionOptions.find(option => option.id === parseInt(optionId));
-        render();
-    } 
-
-    if (e.target.id === 'audioVoice') {
-        const voiceId = e.target.value;
-        state.user.voice = voiceId;
-        render();
-    }     
-    if (e.target.id === 'playDemo') {
-        console.log('Playing demo for voice:', state.user.voice);
-    }
-});
-
-*/
