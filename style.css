@@ -74,7 +74,10 @@ nav.collapsed .arrow {
     cursor: pointer;
     transition: background-color 0.3s;
 }
-
+.nav-button.active {
+    background-color: #2493d4; 
+    color: white;
+  }
 .nav-button:hover {
     background-color: #074e50;
 }

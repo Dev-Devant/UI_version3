@@ -11,6 +11,11 @@
     transition: background-color 0.3s ease;
     font-weight: bold;
   }
+  .custom-button.active {
+    background-color: #2493d4; 
+    color: white;
+  }
+  
 
   .custom-button:hover {
     background-color: #023047; /* Color al pasar el mouse */
