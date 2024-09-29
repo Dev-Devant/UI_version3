@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mi Página Web</title>
+    <title>Artekai V3</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -101,11 +101,8 @@
     <main>
       <!-- SEccion para descubrir cursos o buscar -------------------------------->
 
-      <section id="section1" class="active">
+      <section id="section1" class="active" style="overflow-x: hidden;">
         <link rel="stylesheet" href="discoverStyle.css" />
-
-        <h2>Descubre</h2>
-
         <div class="button-container">
           <button id="Recomendados" class="custom-button">
             <!-- Ícono de persona para "Para Ti" -->
@@ -188,77 +185,23 @@
             <span>Mejor Puntuados</span>
           </button>
         </div>
+
         <div
           id="courseListContainer"
           style="
             width: 100%;
+            max-width: 1200px; /* Ajusta este valor según tus necesidades */
+            margin: 0 auto;
             padding: 20px;
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             gap: 10px;
+            overflow-x: hidden;
+            max-height: 80vh; /* Ajusta este valor según tus necesidades */
           "
-        >
-          <!-- Curso 1 -->
-          <div
-            class="course-item"
-            onclick="toggleCourseDetails(this)"
-            style="
-              background-color: #042a2b;
-              color: white;
-              padding: 20px;
-              border-radius: 8px;
-              cursor: pointer;
-              transition: background-color 0.3s ease;
-            "
-          >
-            <div
-              class="course-summary"
-              style="
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-              "
-            >
-              <div>
-                <span class="course-id" style="color: #d3d3d3">ID001</span>
-                <h3 class="course-title" style="margin: 5px 0">
-                  Curso de Programación en JS
-                </h3>
-                <p class="course-description">
-                  Aprende los fundamentos de JavaScript...
-                </p>
-                <span class="course-tags" style="font-size: 14px"
-                  >#programming #javascript</span
-                >
-              </div>
-              <div class="course-rating">
-                ★★★★☆
-                <!-- Rating estático por ahora -->
-              </div>
+        ></div>
 
-            </div>
-
-            <div class="course-details" style="display: none; margin-top: 20px">
-              <h3 class="course-title">Curso de Programación en JS</h3>
-              <p class="course-full-description">
-                Este curso te llevará desde los conceptos básicos hasta técnicas
-                avanzadas...
-              </p>
-              <span class="course-tags-list"
-                >#programming #javascript #frontend</span
-              >
-              <div class="course-rating">★★★★☆ (4.5/5)</div>
-              <span class="course-students">Estudiantes: 1500</span>
-              <button class="custom-buttonA">Cursar</button>
-            </div>
-          </div>
-
-          <!-- Puedes repetir este bloque para agregar más cursos -->
-
-          
-        </div>
-
-        <script src="Discover.js"> </script>
+        <script src="Discover.js"></script>
       </section>
 
       <!-- SEccion para el chat -------------------------------->
