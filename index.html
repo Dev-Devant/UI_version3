@@ -107,7 +107,7 @@
         <h2>Descubre</h2>
 
         <div class="button-container">
-          <button id="createCourse" class="custom-button">
+          <button id="Recomendados" class="custom-button">
             <!-- Ícono de persona para "Para Ti" -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +126,7 @@
             <span>Para Ti</span>
           </button>
 
-          <button id="continueCourse" class="custom-button">
+          <button id="Populares" class="custom-button">
             <!-- Ícono de estrella para "Populares" -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +146,7 @@
             <span>Populares</span>
           </button>
 
-          <button id="getHelp" class="custom-button">
+          <button id="Escuelas" class="custom-button">
             <!-- Ícono de ruta para "Paths" -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +166,7 @@
             <span>Paths</span>
           </button>
 
-          <button id="getHelp" class="custom-button">
+          <button id="Mejores" class="custom-button">
             <!-- Ícono de trofeo para "Mejor puntuados" -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -235,9 +235,7 @@
                 ★★★★☆
                 <!-- Rating estático por ahora -->
               </div>
-              <button class="custom-button" style="margin-left: 20px">
-                Cursar
-              </button>
+
             </div>
 
             <div class="course-details" style="display: none; margin-top: 20px">
@@ -256,26 +254,11 @@
           </div>
 
           <!-- Puedes repetir este bloque para agregar más cursos -->
+
+          
         </div>
 
-        <script>
-          // Función para desplegar los detalles del curso al hacer clic
-          function toggleCourseDetails(element) {
-            const details = element.querySelector(".course-details");
-            const summary = element.querySelector(".course-summary");
-
-            if (
-              details.style.display === "none" ||
-              details.style.display === ""
-            ) {
-              details.style.display = "block"; // Muestra los detalles
-              summary.style.display = "none"; // Oculta el resumen
-            } else {
-              details.style.display = "none"; // Oculta los detalles
-              summary.style.display = "block"; // Muestra el resumen
-            }
-          }
-        </script>
+        <script src="Discover.js"> </script>
       </section>
 
       <!-- SEccion para el chat -------------------------------->
