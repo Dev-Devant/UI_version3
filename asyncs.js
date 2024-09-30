@@ -29,8 +29,8 @@ async function getData(url = "") {
 
 // Función para realizar login
 async function login(username, password) {
-  const url = server +"/api/login"; // Ruta de la API para login
-  const data = { username, password }; // Datos a enviar en la solicitud POST
+  const url = server +"/api/login"; 
+  const data = { username, password }; 
 
   try {
     const response = await postData(url, data);
@@ -46,20 +46,20 @@ async function login(username, password) {
           country: "United States",
           voice: "voice1",
         };
-        state.slideDisplay = false;
-        state.mainMenuOpen = true;
         if(response.Level > 0){
           state.validatedAndAbilitadedUser = true
         }
-        render()
-      return false    
+        window.location.href = "mainScreen.html";
+
+      return true    
     } else {
       console.log("Error en la respuesta del servidor:", response.error);
+      return false
     }
   } catch (error) {
     console.error("Error al realizar la solicitud (login):", error);
+    return false
   }
-  return true
 }
 
 
@@ -82,16 +82,14 @@ async function register(username, password,newsletter) {
           voice: 'voice1',
           newsletterSubscribed: newsletter
       };
-      state.slideDisplay = false;
-      state.mainMenuOpen = true;
-      render();
-      return false
+      window.location.href = "mainScreen.html";
+      return true
     }
 
   } catch (error) {
     console.error("Error al realizar la solicitud (register):", error);
   }
-  return true
+  return false
 }
 
 

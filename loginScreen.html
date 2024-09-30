@@ -5,79 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Artek AI</title>
     <link rel="icon" href="Logo Artek.png" type="image/x-icon" />
+    <link rel="stylesheet" href="logingStyles.css" />
   </head>
   <body class="bg-[#08090A] text-[#bbbec6] font-sans" style="overflow: hidden">
-    <script src="asyncs.js"></script>
-    <script src="loginLogic.js"></script>
-    <script src="main.js"></script>
-
     <div class="w-full max-w-md">
-      <div
-        class="bg-[#042a2b] rounded-lg shadow-lg p-8 border border-[#4bc6ff]"
-      >
-        <h2 class="text-3xl font-bold text-center text-[#4bc6ff] mb-6">
+      <div class="bg-042a2b rounded-lg shadow-lg p-8 border border-4bc6ff">
+        <h2 id="formTitle" class="text-3xl font-bold text-center text-4bc6ff mb-6">
           Login to Artek
         </h2>
-        <form id="authForm" class="space-y-4">
+        <form id="loginForm" class="space-y-4">
           <div>
-            <label for="email" class="block text-sm font-medium text-[#bbbec6]">
+            <label for="loginEmail" class="block text-sm font-medium text-white">
               Email
             </label>
             <input
-              id="email"
+              id="loginEmail"
               type="email"
               required
-              class="mt-1 block w-full px-3 py-2 bg-[#08090A] border border-[#68696e] rounded-md text-[#bbbec6] focus:outline-none focus:ring-[#4bc6ff] focus:border-[#4bc6ff]"
+              class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md text-white input-dark"
             />
           </div>
           <div>
-            <label
-              for="password"
-              class="block text-sm font-medium text-[#bbbec6]"
-            >
+            <label for="loginPassword" class="block text-sm font-medium text-white">
               Password
             </label>
             <input
-              id="password"
+              id="loginPassword"
               type="password"
               required
-              class="mt-1 block w-full px-3 py-2 bg-[#08090A] border border-[#68696e] rounded-md text-[#bbbec6] focus:outline-none focus:ring-[#4bc6ff] focus:border-[#4bc6ff]"
+              class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md text-white input-dark"
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-4bc6ff text-08090A py-2 px-4 rounded-md hover:bg-2493d4 transition-colors"
+          >
+            Login
+          </button>
+        </form>
+        <form id="signupForm" class="space-y-4" style="display: none;">
+          <div>
+            <label for="signupEmail" class="block text-sm font-medium text-white">
+              Email
+            </label>
+            <input
+              id="signupEmail"
+              type="email"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md text-white input-dark"
             />
           </div>
           <div>
-            <label
-              for="confirmPassword"
-              class="block text-sm font-medium text-[#bbbec6]"
-            >
+            <label for="signupPassword" class="block text-sm font-medium text-white">
+              Password
+            </label>
+            <input
+              id="signupPassword"
+              type="password"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md text-white input-dark"
+            />
+          </div>
+          <div>
+            <label for="confirmPassword" class="block text-sm font-medium text-white">
               Confirm Password
             </label>
             <input
               id="confirmPassword"
               type="password"
               required
-              class="mt-1 block w-full px-3 py-2 bg-[#08090A] border border-[#68696e] rounded-md text-[#bbbec6] focus:outline-none focus:ring-[#4bc6ff] focus:border-[#4bc6ff]"
+              class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md text-white input-dark"
             />
           </div>
-          <div class="flex items-start">
-            <input id="terms" type="checkbox" required class="mr-2" />
-            <label for="terms" class="text-sm text-[#bbbec6]">
+          <div class="checkbox-container">
+            <input id="terms" type="checkbox" required />
+            <label for="terms" class="text-sm text-bbbec6">
               I agree to the
-              <a href="#" id="termsLink" class="text-[#4bc6ff] hover:underline">
+              <a href="#" id="termsLink" class="text-4bc6ff hover:underline">
                 Terms of Use
               </a>
             </label>
           </div>
-          <div class="flex items-start">
-            <input id="newsletter" type="checkbox" class="mr-2" />
-            <label for="newsletter" class="text-sm text-[#bbbec6]">
+          <div class="checkbox-container">
+            <input id="newsletter" type="checkbox" />
+            <label for="newsletter" class="text-sm text-bbbec6">
               Subscribe to the newsletter
             </label>
           </div>
           <button
             type="submit"
-            class="w-full bg-[#4bc6ff] text-[#08090A] py-2 px-4 rounded-md hover:bg-[#2493d4] transition-colors"
+            class="w-full bg-4bc6ff text-08090A py-2 px-4 rounded-md hover:bg-2493d4 transition-colors"
           >
-            Login or Create Account
+            Create Account
           </button>
         </form>
         <div class="mt-4">
@@ -110,19 +129,22 @@
         <div class="mt-4 text-center">
           <button
             id="toggleAuth"
-            class="text-[#4bc6ff] hover:underline focus:outline-none"
+            class="text-4bc6ff hover:underline focus:outline-none"
           >
-            'Need an account? Sign up
+            Need an account? Sign up
           </button>
           <br />
           <button
             id="forgotPass"
-            class="text-[#4bc6ff] hover:underline focus:outline-none"
+            class="text-4bc6ff hover:underline focus:outline-none"
           >
-            Contraseña olvidada
+            Forgot password?
           </button>
         </div>
       </div>
     </div>
+    <script src="asyncs.js"></script>
+    <script src="main.js"></script>
+    <script src="loginLogic.js"></script>
   </body>
 </html>
