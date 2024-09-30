@@ -39,9 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Please fill in all fields");
       return;
     }
-    const result = login(email, password);
+    login(email, password);
 
-    console.log('request: ' +  result)
   });
 
   signupForm.addEventListener("submit", function (e) {

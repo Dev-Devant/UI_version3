@@ -8,8 +8,8 @@
   </head>
   <body class="bg-[#08090A] text-[#bbbec6] font-sans" style="overflow: hidden">
     <script src="asyncs.js"></script>
-    <script src="main.js"></script>
 
+    <script src="main.js"></script>
     <script>
       async function init() {
         if (localStorage.getItem("SessionKey")) {
@@ -17,9 +17,10 @@
           const isOnSession = await checkSession(currentKey);
           if (isOnSession) {
             window.location.href = "mainScreen.html";
-          } else {
-            window.location.href = "loginScreen.html";
+            return
           }
+        }else{
+          window.location.href = "login/loginScreen.html";
         }
       }
 

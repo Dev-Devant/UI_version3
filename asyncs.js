@@ -51,7 +51,7 @@ async function login(username, password) {
         }
 
         saveUserData(state.user)
-        window.location.href = "mainScreen.html";
+        window.location.href = "../mainScreen.html";
 
       return true    
     } else {
@@ -85,7 +85,7 @@ async function register(username, password,newsletter) {
           newsletterSubscribed: newsletter
       };
       saveUserData(state.user)
-      window.location.href = "mainScreen.html";
+      window.location.href = "../mainScreen.html";
       return true
     }
 
