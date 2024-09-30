@@ -100,7 +100,7 @@ async function checkSession(SessionKey) {
   try {
     const response = await postData(url, data);
     if (response.SessionKey) {
-      state.isLoggedIn = true;
+      state.isLogin = true;
       state.user = {
           name: response.UserName,
           email: response.Email,

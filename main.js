@@ -44,14 +44,8 @@ let state = {
         voice: 'voice1'
     }
 };
-/////////// starting logic
 
-/*
-if (localStorage.getItem('SessionKey')) {
-    var currentKey = localStorage.getItem('SessionKey');
-    checkSession(currentKey)
-} 
-*/
+
 
 
 let discoverCoursesPreload = {
@@ -91,3 +85,4 @@ let discoverCoursesPreload = {
 }
 
 
+checkSession(currentKey)
