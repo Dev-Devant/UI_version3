@@ -49,6 +49,8 @@ async function login(username, password) {
         if(response.Level > 0){
           state.validatedAndAbilitadedUser = true
         }
+
+        saveUserData(userData)
         window.location.href = "mainScreen.html";
 
       return true    
@@ -82,6 +84,7 @@ async function register(username, password,newsletter) {
           voice: 'voice1',
           newsletterSubscribed: newsletter
       };
+      saveUserData(userData)
       window.location.href = "mainScreen.html";
       return true
     }
@@ -113,6 +116,8 @@ async function checkSession(SessionKey) {
       if(response.Level > 0){
         state.validatedAndAbilitadedUser = true
       }
+      saveUserData(userData)
+
       return true
     } else {
        console.log("Error en la respuesta del servidor:", response.error);

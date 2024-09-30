@@ -84,5 +84,21 @@ let discoverCoursesPreload = {
 
 }
 
+// Después de un inicio de sesión exitoso
+function saveUserData(userData) {
+  localStorage.setItem('user', JSON.stringify(userData));
+}
 
+// Para recuperar los datos del usuario
+function getUserData() {
+  const userData = localStorage.getItem('user');
+  return userData ? JSON.parse(userData) : null;
+}
+
+// Para actualizar state.user
+function updateStateUser() {
+  state.user = getUserData();
+}
+
+// Llama a esta función cuando la aplicación se inicie
 checkSession(currentKey)
