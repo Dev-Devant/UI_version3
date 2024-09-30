@@ -101,4 +101,4 @@ function updateStateUser() {
 }
 
 // Llama a esta función cuando la aplicación se inicie
-checkSession(currentKey)
+checkSession(localStorage.getItem('SessionKey'))

@@ -50,7 +50,7 @@ async function login(username, password) {
           state.validatedAndAbilitadedUser = true
         }
 
-        saveUserData(userData)
+        saveUserData(state.user)
         window.location.href = "mainScreen.html";
 
       return true    
@@ -84,7 +84,7 @@ async function register(username, password,newsletter) {
           voice: 'voice1',
           newsletterSubscribed: newsletter
       };
-      saveUserData(userData)
+      saveUserData(state.user)
       window.location.href = "mainScreen.html";
       return true
     }
@@ -116,7 +116,7 @@ async function checkSession(SessionKey) {
       if(response.Level > 0){
         state.validatedAndAbilitadedUser = true
       }
-      saveUserData(userData)
+      saveUserData(state.user)
 
       return true
     } else {

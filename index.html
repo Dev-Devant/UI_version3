@@ -8,19 +8,23 @@
   </head>
   <body class="bg-[#08090A] text-[#bbbec6] font-sans" style="overflow: hidden">
     <script src="asyncs.js"></script>
+    <script src="main.js"></script>
+
     <script>
-      if (localStorage.getItem("SessionKey")) {
-        const currentKey = localStorage.getItem("SessionKey");
-        const isOnSession = checkSession(currentKey)
-        if (isOnSession) {
-          window.location.href = "mainScreen.html";
-          console.log("onSession");
-        } else {
-          window.location.href = "loginScreen.html";
-          console.log("not session");
+      async function init() {
+        if (localStorage.getItem("SessionKey")) {
+          const currentKey = localStorage.getItem("SessionKey");
+          const isOnSession = await checkSession(currentKey);
+          if (isOnSession) {
+            window.location.href = "mainScreen.html";
+          } else {
+            window.location.href = "loginScreen.html";
+          }
         }
       }
+
+      // Llama a la función init al cargar la página
+      init();
     </script>
-    <script src="main.js"></script>
   </body>
 </html>
