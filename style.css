@@ -88,6 +88,7 @@ main {
     padding: 1rem;
     height: calc(100vh - 60px);
     overflow: hidden;
+    
     transition: margin-left 0.3s ease-in-out;
     box-sizing: border-box;
     position: relative;
