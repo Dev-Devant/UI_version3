@@ -11,7 +11,7 @@
     <script>
       if (localStorage.getItem("SessionKey")) {
         const currentKey = localStorage.getItem("SessionKey");
-        const isOnSession = false; //checkSession(currentKey)
+        const isOnSession = checkSession(currentKey)
         if (isOnSession) {
           window.location.href = "mainScreen.html";
           console.log("onSession");
