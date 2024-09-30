@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function updateHeader() {
+  updateStateUser()
   const userNameElement = document.getElementById("userName");
   const userTokensElement = document.getElementById("userTokens");
 
