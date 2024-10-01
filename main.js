@@ -33,6 +33,7 @@ let state = {
     isLogin: true,
     language: 'en',
     chatMessages: [],
+    isMuted: false,
     isVoiceEnabled: false,
     user: {
         name: 'username',

@@ -159,6 +159,22 @@
             <div id="chatMessages"></div>
             <div class="input-area">
               <div class="input-container">
+                <button id="toggleMute">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M12 5v14m-7-7h2l5 5V7L7 12H5"></path> <!-- Mic on -->
+                    <line x1="23" x2="1" y1="1" y2="23" id="muteLine" style="display:none"></line> <!-- Mute line -->
+                  </svg>
+                </button>
                 <button id="toggleVoice">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
