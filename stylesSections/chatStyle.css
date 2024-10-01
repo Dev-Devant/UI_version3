@@ -84,3 +84,67 @@ body,html {
 #sendMessage:hover {
   color: #4bc6ff;
 }
+
+
+.waiting {
+  background-color: rgba(44, 44, 44, 0.8); /* Fondo oscuro y semitransparente */
+  color: #bbbec6; /* Color del texto */
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
+  max-width: 70%; /* Ancho máximo de la burbuja */
+  opacity: 0.8; /* Opacidad inicial */
+  animation: pulse 1.5s infinite; /* Animación de pulso */
+}
+
+/* Animación de pulso */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.8; /* Opacidad normal */
+  }
+  50% {
+    opacity: 1; /* Mayor opacidad en el centro del pulso */
+  }
+}
+
+.create-button {
+  background-color: #219ebc; /* Color de fondo */
+  color: #ffffff; /* Color del texto */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 10px 15px; /* Relleno */
+  cursor: pointer; /* Cambia el cursor al pasar */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+  font-size: 16px; /* Tamaño de fuente */
+}
+
+.create-button:hover {
+  background-color: #1a7c9a; /* Color más oscuro al pasar el mouse */
+}
+
+.create-button.active {
+  background-color: #8ecae6; /* Color cuando está activo */
+  opacity: 0.5; /* Opacidad para indicar desactivado */
+  cursor: not-allowed; /* Cambia el cursor a "no permitido" */
+  transform: scale(0.95); /* Efecto de contracción */
+}
+
+.create-button.loading {
+  animation: loading 1s infinite; /* Aplicar animación de carga */
+}
+
+/* Animación de carga */
+@keyframes loading {
+  0% {
+    opacity: 1; /* Comienza visible */
+    transform: scale(1); /* Escala normal */
+  }
+  50% {
+    opacity: 0.7; /* Reduce opacidad a mitad */
+    transform: scale(1.05); /* Aumenta ligeramente la escala */
+  }
+  100% {
+    opacity: 1; /* Vuelve a ser visible */
+    transform: scale(1); /* Vuelve a la escala normal */
+  }
+}

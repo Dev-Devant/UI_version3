@@ -138,24 +138,15 @@ async function chatter(Chat) {
   try {
       const response = await postData(url, data);
       if (response.message) {         
-
-        const format = formatMessage(response.IAResp.toString())
-        const actions = ActionsDetector(format)
-        const filter = removeFormatting(response.IAResp.toString())
-        stopVoice()
-        InterpreterVoice(filter)
-        let ensambler = '<pre style="white-space: pre-wrap; word-wrap: break-word; overflow-x: auto; max-width: 100%;">' + format + '</pre>'
-        ensambler += actions
-        state.chatMessages.push({ sender: 'Artek AI', message: ensambler});
-        render()
-        return false
+        addMessage(response.IAResp, 'IA')
+        return true
       } else {
           console.log("Error en la respuesta del servidor:", response.error);
       }
   } catch (error) {
       console.error("Error al realizar la solicitud :", error);
   }
-  return true
+  return false
 }
 
 async function getCourses() {
@@ -294,17 +285,18 @@ async function RequestCreate(instructions) {
   try {
       const response = await postData(url, data);
       if (response.message) {    
-        searchingCourses()
+        //searchingCourses()
+        console.log("Funcionoooooo")
         state.user.tokens = response.tokens
         return true;
       } else {
         console.log("Error en la respuesta del servidor:", response.error);
-        return false
       }
   } catch (error) {
       console.error("Error al realizar la solicitud :", error);
-      return false
+      
   }
+  return false
 }
 
 async function logOutSession(SessionKey) {
@@ -396,3 +388,5 @@ async function getPayments() {
     console.error('Error al obtener los pagos:', error);
   }
 }
+
+window.chatter = chatter;
