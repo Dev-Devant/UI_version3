@@ -172,7 +172,7 @@ async function getCourses() {
           const progress = (cnt/course.enrroledDAta.temas.length)*100
             const dataLoad = {
               'id': course.ID,
-              'title': course.title,        
+              'title': markdownToHTML(course.title),        
               'tags': course.tags,         
               'description': course.description,
               'overview': course.overview,
@@ -180,14 +180,14 @@ async function getCourses() {
               'enroledData': course.enrroledDAta,
               'progress': progress,
               'score': 5,
-              'state': 'Inprogress'
+              'state': course.enrroledDAta.finalizado
             }
             dataMined.push(dataLoad);
         });
 
         courses = dataMined
-        renderizarCursos('Inprogress');
-
+        console.log(courses)
+        renderizarCursos(false);
         return true
 
       } else {

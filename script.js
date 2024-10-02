@@ -6,11 +6,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const main = document.querySelector("main");
 
   let currentSection = 1;
+  let isTransitioning = false; // Para evitar superposiciones de transiciones
 
   navButtons.forEach((button) => {
     button.addEventListener("click", function () {
       const sectionNumber = parseInt(this.getAttribute("data-section"));
-      if (sectionNumber !== currentSection) {
+      if (sectionNumber !== currentSection && !isTransitioning) {
         showSection(sectionNumber);
       }
       updateCurrentModeDisplay(this.textContent);
@@ -23,27 +24,29 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function showSection(sectionNumber) {
+    if (isTransitioning) return; // Si está en transición, no hacer nada
+
     const previousSection = document.getElementById(`section${currentSection}`);
     const nextSection = document.getElementById(`section${sectionNumber}`);
 
+    isTransitioning = true; // Bloquear nuevas transiciones
+
     if (sectionNumber > currentSection) {
-      // Sliding up
       previousSection.classList.add("slide-up");
       nextSection.classList.add("slide-down");
     } else {
-      // Sliding down
       previousSection.classList.add("slide-down");
       nextSection.classList.add("slide-up");
     }
 
-    // Trigger reflow to ensure the initial state is applied before transitioning
+    // Forzar el reflow para que la animación ocurra
     nextSection.offsetHeight;
 
     previousSection.classList.remove("active");
     nextSection.classList.remove("slide-up", "slide-down");
     nextSection.classList.add("active");
 
-    // Update active button
+    // Actualizar botón activo
     navButtons.forEach((button) => button.classList.remove("active"));
     const activeButton = document.querySelector(
       `[data-section="${sectionNumber}"]`
@@ -52,15 +55,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     currentSection = sectionNumber;
 
-    // Clean up classes after animation
+    // Limpiar las clases después de la animación y permitir nuevas transiciones
     setTimeout(() => {
       previousSection.classList.remove("slide-up", "slide-down");
+      isTransitioning = false; // Permitir nuevas transiciones
     }, 500);
   }
 });
 
 function updateHeader() {
-  updateStateUser()
+  updateStateUser();
   const userNameElement = document.getElementById("userName");
   const userTokensElement = document.getElementById("userTokens");
 
