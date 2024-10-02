@@ -82,6 +82,17 @@ document.addEventListener('DOMContentLoaded', function() {
         button.textContent = 'Creando...'; 
         button.classList.add('loading');
 
+        let seconds = 0;
+        const timerInterval = setInterval(() => {
+          seconds++;
+          const minutes = Math.floor(seconds / 60);
+          const displaySeconds = seconds % 60;
+          // Actualiza el texto del botón con el tiempo
+          button.textContent = `Creando... ${minutes}:${displaySeconds < 10 ? '0' : ''}${displaySeconds} Estimado 2Min`;
+        }, 1000);
+      
+
+
         const result = await RequestCreate(messagea); 
         if(!result){
           button.textContent = 'Crear!'; 
@@ -89,8 +100,11 @@ document.addEventListener('DOMContentLoaded', function() {
           button.classList.remove('active'); 
           button.classList.remove('loading');
         }else{
-          button.textContent = 'Creado!'; 
+          const minutes = Math.floor(seconds / 60);
+          const displaySeconds = seconds % 60;
+          button.textContent = `Creado en ${minutes}:${displaySeconds < 10 ? '0' : ''}${displaySeconds}`; // Muestra el tiempo transcurrido
           button.classList.remove('loading');
+          clearInterval(timerInterval);
           getCourses()
         }
         
