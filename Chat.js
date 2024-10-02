@@ -90,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }else{
           button.textContent = 'Creado!'; 
           button.classList.remove('loading');
+          getCourses()
         }
         
       });

@@ -47,8 +47,6 @@ let state = {
 };
 
 
-
-
 let discoverCoursesPreload = {
     Recomend : [
             {
@@ -103,3 +101,4 @@ function updateStateUser() {
 
 // Llama a esta función cuando la aplicación se inicie
 checkSession(localStorage.getItem('SessionKey'))
+getCourses()

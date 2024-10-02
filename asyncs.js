@@ -171,20 +171,24 @@ async function getCourses() {
           }
           const progress = (cnt/course.enrroledDAta.temas.length)*100
             const dataLoad = {
-              'ID': course.ID,
-              'title': formatMessage(course.title.toString()),        
+              'id': course.ID,
+              'title': course.title,        
               'tags': course.tags,         
-              'description': formatMessage(course.description.toString()),
+              'description': course.description,
               'overview': course.overview,
               'content': course.content,
               'enroledData': course.enrroledDAta,
-              'progress': progress
+              'progress': progress,
+              'score': 5,
+              'state': 'Inprogress'
             }
             dataMined.push(dataLoad);
         });
 
         courses = dataMined
-        render()
+        renderizarCursos('Inprogress');
+
+        return true
 
       } else {
         console.log("Error en la respuesta del servidor:", response.error);
@@ -192,6 +196,7 @@ async function getCourses() {
   } catch (error) {
       console.error("Error al realizar la solicitud :", error);
   }
+  return false
 }
 
 async function updateCourseTraker(courseId,seen) {
