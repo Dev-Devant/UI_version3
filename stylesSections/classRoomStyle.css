@@ -1,5 +1,5 @@
 .main-content {
-    margin-right: 30vh; /* Deja espacio para el chat inicialmente */
+    margin-right: 60vh; /* Deja espacio para el chat inicialmente */
 }
 .progress-bar {
     background-color: #f0f0f0;
@@ -43,12 +43,14 @@
     position: fixed;
     right: 0;
     top: 0;
-    width: 30vh;
+    width: 60vh;
     height: 92vh;
     background-color: #08090a;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     z-index: 100;
-    overflow: auto;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
     resize: none; /* Deshabilitar el resize por CSS */
 }
 

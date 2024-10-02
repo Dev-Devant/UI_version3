@@ -186,7 +186,6 @@ async function getCourses() {
         });
 
         courses = dataMined
-        console.log(courses)
         renderizarCursos(false);
         return true
 

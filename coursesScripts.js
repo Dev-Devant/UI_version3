@@ -69,6 +69,10 @@ function renderizarCursos(state) {
             nextSection.classList.remove("slide-up", "slide-down");
             nextSection.classList.add("active");
             console.log(`Entrando al curso: ${curso.title}`);
+            currentCourse = curso.content.modulos
+            currentModuleIndex = 0
+            currentUnitIndex = 0
+            loadContent(0, 0)
             // Aquí puedes redirigir a una página específica del curso
             // window.location.href = `/curso/${curso.id}`; // Ejemplo de redirección
         });
