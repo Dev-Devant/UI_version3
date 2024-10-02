@@ -225,6 +225,8 @@
         </div>
         <script src="Chat.js"></script>
       </section>
+      <!-- SEccion para los cursos -------------------------------->
+
       <section id="section3">
         <link rel="stylesheet" href="stylesSections/coursesStyle.css">
         <div class="mode-selector">
@@ -236,10 +238,50 @@
         </div>
         <script src="coursesScripts.js"></script>
       </section>
+      <!-- SEccion para cursar -------------------------------->
+
       <section id="section4">
-        <h2>Sección 4</h2>
-        <p>Contenido de la sección 4</p>
+        <link rel="stylesheet" href="stylesSections/classRoomStyle.css">
+
+        <div class="main-content">
+          <div class="progress-bar">
+              <div class="progress" id="progress"></div>
+          </div>
+          <div class="course-navigation">
+              <h2 id="course-name">Nombre del Curso</h2>
+              <div>
+                  <button id="prev-unit">Unidad Anterior</button>
+                  <button id="next-unit">Siguiente Unidad</button>
+              </div>
+          </div>
+          <h3 id="module-title">Módulo X - Unidad Y</h3>
+          <div class="content-section" id="explanation">
+              <h4>Explicación</h4>
+              <p>Aquí va el contenido explicativo de la unidad.</p>
+          </div>
+          <div class="content-section" id="example">
+              <h4>Ejemplo</h4>
+              <p>Aquí va un ejemplo relacionado con la unidad.</p>
+          </div>
+          <div class="content-section" id="additional-explanation">
+              <h4>Explicación Adicional</h4>
+              <p>Aquí va una explicación adicional o más detallada.</p>
+          </div>
+          <div class="chat-input">
+              <input type="text" id="chat-message" placeholder="Escribe tu mensaje...">
+              <button id="upload-file">Subir Archivo</button>
+              <button id="send-message">Enviar</button>
+          </div>
+      </div>
+      <div class="side-chat" id="side-chat">
+          <h3>Chat</h3>
+          <!-- Aquí se agregarán los mensajes del chat -->
+      </div>
+      <script src="classRoom.js"></script>
       </section>
+
+            <!-- SEccion para el algp -------------------------------->
+
       <section id="section5">
         <h2>Sección 5</h2>
         <p>Contenido de la sección 5</p>

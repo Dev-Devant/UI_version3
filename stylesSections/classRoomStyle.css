@@ -1,0 +1,47 @@
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+.progress-bar {
+    background-color: #f0f0f0;
+    height: 20px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.progress {
+    background-color: #4CAF50;
+    height: 100%;
+    width: 0%;
+    transition: width 0.5s ease-in-out;
+}
+.course-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.content-section {
+    margin-bottom: 20px;
+}
+.chat-input {
+    display: flex;
+    margin-top: 20px;
+}
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+}
+.chat-input button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.side-chat {
+    width: 300px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    height: 100vh;
+    overflow-y: auto;
+}
