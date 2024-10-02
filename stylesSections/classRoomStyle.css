@@ -1,6 +1,5 @@
 .main-content {
-    flex: 1;
-    padding: 20px;
+    margin-right: 30vh; /* Deja espacio para el chat inicialmente */
 }
 .progress-bar {
     background-color: #f0f0f0;
@@ -38,10 +37,27 @@
     border: none;
     cursor: pointer;
 }
+
+
 .side-chat {
-    width: 300px;
-    background-color: #f9f9f9;
-    padding: 20px;
-    height: 100vh;
-    overflow-y: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 30vh;
+    height: 92vh;
+    background-color: #08090a;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    overflow: auto;
+    resize: none; /* Deshabilitar el resize por CSS */
+}
+
+.resize-handle {
+    position: absolute;
+    left: -5px;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    cursor: ew-resize;
+    background-color: transparent;
 }

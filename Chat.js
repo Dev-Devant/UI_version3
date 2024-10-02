@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const chatMessages = document.getElementById('chatMessages');
     const messageInput = document.getElementById('messageInput');
     const sendMessage = document.getElementById('sendMessage');
     const toggleVoice = document.getElementById('toggleVoice');
@@ -61,6 +60,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function addMessage(messagea, sendero) {
     const messageToAdd = {sender:sendero,message:messagea}
+    const chatMessages = document.getElementById('chatMessages');
+
     state.chatMessages.push(messageToAdd)
     const formattedMessage = markdownToHTML(messagea);
 
@@ -118,6 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function addWaitingMessage() {
+    const chatMessages = document.getElementById('chatMessages');
+
     const waitingMessage = document.createElement('div');
     waitingMessage.classList.add('message', 'waiting');
     waitingMessage.innerHTML = 'Esperando mensaje...';
@@ -127,6 +130,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   function removeWaitingMessage() {
+    const chatMessages = document.getElementById('chatMessages');
+
     const waitingMessage = document.getElementById('waitingMessage');
     if (waitingMessage) {
       chatMessages.removeChild(waitingMessage);

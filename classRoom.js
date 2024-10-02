@@ -1,35 +1,25 @@
-let progress = 0;
-        const progressBar = document.getElementById('progress');
-        const updateProgress = () => {
-            progress += 10;
-            if (progress > 100) progress = 0;
-            progressBar.style.width = progress + '%';
-            progressBar.textContent = progress + '%';
-        };
+const sideChat = document.getElementById('side-chat');
+const resizeHandle = document.querySelector('.resize-handle');
+const mainContent = document.querySelector('.main-content');
 
-        // Eventos de los botones
-        document.getElementById('prev-unit').addEventListener('click', () => {
-            alert('Unidad anterior');
-            updateProgress();
-        });
+let isResizing = false;
 
-        document.getElementById('next-unit').addEventListener('click', () => {
-            alert('Siguiente unidad');
-            updateProgress();
-        });
+resizeHandle.addEventListener('mousedown', (e) => {
+    isResizing = true;
+    document.addEventListener('mousemove', resize);
+    document.addEventListener('mouseup', stopResize);
+});
 
-        document.getElementById('upload-file').addEventListener('click', () => {
-            alert('Subir archivo');
-        });
+function resize(e) {
+    if (isResizing) {
+        const newWidth = window.innerWidth - e.clientX;
+        sideChat.style.width = `${newWidth}px`;
+        mainContent.style.marginRight = `${newWidth}px`; // Ajusta el margen del contenido
+    }
+}
 
-        document.getElementById('send-message').addEventListener('click', () => {
-            const messageInput = document.getElementById('chat-message');
-            const message = messageInput.value;
-            if (message) {
-                const chatContainer = document.getElementById('side-chat');
-                const messageElement = document.createElement('p');
-                messageElement.textContent = message;
-                chatContainer.appendChild(messageElement);
-                messageInput.value = '';
-            }
-        });
+function stopResize() {
+    isResizing = false;
+    document.removeEventListener('mousemove', resize);
+    document.removeEventListener('mouseup', stopResize);
+}
