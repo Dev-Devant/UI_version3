@@ -108,7 +108,7 @@ body,html {
 }
 
 .create-button {
-  background-color: #219ebc; /* Color de fondo */
+  background-color: #07295f; /* Color de fondo */
   color: #ffffff; /* Color del texto */
   border: none; /* Sin borde */
   border-radius: 5px; /* Bordes redondeados */
@@ -119,7 +119,7 @@ body,html {
 }
 
 .create-button:hover {
-  background-color: #1a7c9a; /* Color más oscuro al pasar el mouse */
+  background-color: rgb(15, 84, 105); /* Color más oscuro al pasar el mouse */
 }
 
 .create-button.active {
