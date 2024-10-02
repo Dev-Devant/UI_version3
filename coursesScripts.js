@@ -7,13 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     cursandoBtn.addEventListener('click', () => {
         cursandoBtn.classList.add('active');
         completadosBtn.classList.remove('active');
-        renderizarCursos('cursando');
+        renderizarCursos('Inprogress');
     });
 
     completadosBtn.addEventListener('click', () => {
         completadosBtn.classList.add('active');
         cursandoBtn.classList.remove('active');
-        renderizarCursos('completado');
+        renderizarCursos('Completed');
     });
 
 });
@@ -36,13 +36,32 @@ function renderizarCursos(state) {
             <div class="rating">
                 ${'★'.repeat(Math.floor(curso.score))}${'☆'.repeat(5 - Math.floor(curso.score))}
             </div>
-            <button>Entrar al curso</button>
+            <button class="enter-course-btn">Entrar al curso</button>
             <p class="description">${curso.description}</p>
+            <button class="close-btn">x</button> <!-- Botón de cerrar -->
         `;
         cursosContainer.appendChild(cursoElement);
 
+        // Evento para expandir/encoger
         cursoElement.addEventListener('click', () => {
             cursoElement.classList.toggle('expanded');
         });
+
+        // Evento para cerrar el curso
+        const closeBtn = cursoElement.querySelector('.close-btn');
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evitar que el clic en el botón afecte al expandir/encoger
+            cursoElement.classList.remove('expanded');
+        });
+
+        // Evento para el botón "Entrar al curso"
+        const enterCourseBtn = cursoElement.querySelector('.enter-course-btn');
+        enterCourseBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evitar que el clic afecte al expandir/encoger
+            console.log(`Entrando al curso: ${curso.title}`);
+            // Aquí puedes redirigir a una página específica del curso
+            // window.location.href = `/curso/${curso.id}`; // Ejemplo de redirección
+        });
     });
 }
+
