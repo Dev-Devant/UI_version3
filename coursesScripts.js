@@ -55,9 +55,19 @@ function renderizarCursos(state) {
         });
 
         // Evento para el botón "Entrar al curso"
+        const previousSection = document.getElementById(`section${3}`);
+
+        const nextSection = document.getElementById(`section${4}`);
         const enterCourseBtn = cursoElement.querySelector('.enter-course-btn');
         enterCourseBtn.addEventListener('click', (e) => {
             e.stopPropagation(); // Evitar que el clic afecte al expandir/encoger
+            nextSection.classList.add("slide-down");
+            previousSection.classList.add("slide-up");
+            nextSection.offsetHeight;
+
+            previousSection.classList.remove("active");
+            nextSection.classList.remove("slide-up", "slide-down");
+            nextSection.classList.add("active");
             console.log(`Entrando al curso: ${curso.title}`);
             // Aquí puedes redirigir a una página específica del curso
             // window.location.href = `/curso/${curso.id}`; // Ejemplo de redirección
