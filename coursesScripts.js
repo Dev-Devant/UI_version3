@@ -7,13 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     cursandoBtn.addEventListener('click', () => {
         cursandoBtn.classList.add('active');
         completadosBtn.classList.remove('active');
-        renderizarCursos('Inprogress');
+        renderizarCursos(false);
     });
 
     completadosBtn.addEventListener('click', () => {
         completadosBtn.classList.add('active');
         cursandoBtn.classList.remove('active');
-        renderizarCursos('Completed');
+        renderizarCursos(true);
     });
 
 });
