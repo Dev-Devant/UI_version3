@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatMessages = document.getElementById('chatMessages');
 
     state.chatMessages.push(messageToAdd)
-    const formattedMessage = markdownToHTML(messagea);
+    const formattedMessage = marked.parse(messagea);
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('message', sendero);
@@ -118,19 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-
-  function markdownToHTML(markdown) {
-    let html = markdown
-      .replace(/^### (.*$)/gim, '<h3>$1</h3>') // Encabezados de nivel 3
-      .replace(/^## (.*$)/gim, '<h2>$1</h2>') // Encabezados de nivel 2
-      .replace(/^# (.*$)/gim, '<h1>$1</h1>')  // Encabezados de nivel 1
-      .replace(/\*\*(.*)\*\*/gim, '<b>$1</b>') // Negritas
-      .replace(/\*(.*)\*/gim, '<i>$1</i>')     // Itálicas
-      .replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2" target="_blank">$1</a>') // Enlaces
-      .replace(/\n/gim, '<br>');               // Saltos de línea
-    
-    return html.trim(); // Elimina espacios extra
-  }
 
   function addWaitingMessage() {
     const chatMessages = document.getElementById('chatMessages');

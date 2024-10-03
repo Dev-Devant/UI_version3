@@ -172,7 +172,7 @@ async function getCourses() {
           const progress = (cnt/course.enrroledDAta.temas.length)*100
             const dataLoad = {
               'id': course.ID,
-              'title': markdownToHTML(course.title),        
+              'title': marked.parse(course.title),        
               'tags': course.tags,         
               'description': course.description,
               'overview': course.overview,

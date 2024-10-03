@@ -62,7 +62,7 @@ document.getElementById('prev-unit').addEventListener('click', function() {
 document.getElementById('next-unit').addEventListener('click', function() {
   if (currentUnitIndex < currentCourse[currentModuleIndex].temas.length - 1) {
     currentUnitIndex++;
-  } else if (currentModuleIndex < currentCourse.module[currentModuleIndex].length - 1) {
+  } else if (currentModuleIndex < currentCourse[currentModuleIndex].length - 1) {
     currentModuleIndex++;
     currentUnitIndex = 0;
   }
