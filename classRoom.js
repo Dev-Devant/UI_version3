@@ -4,6 +4,15 @@ const mainContent = document.querySelector('.main-content');
 
 let isResizing = false;
 
+marked.setOptions({
+  highlight: function (code, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      return hljs.highlight(lang, code).value;
+    }
+    return hljs.highlightAuto(code).value;
+  }
+});
+
 resizeHandle.addEventListener('mousedown', (e) => {
     isResizing = true;
     document.addEventListener('mousemove', resize);
@@ -43,9 +52,22 @@ function loadContent(moduleIndex, unitIndex) {
   document.getElementById('module-title').textContent = unit.Tema;
   
   // Actualizar las secciones de explicación, ejemplo y ejercicio
-  document.getElementById('explanation').innerHTML = marked.parse(unit.explicacion);
-  document.getElementById('example').innerHTML = marked.parse(unit.ejemplo);
-  document.getElementById('Exam').innerHTML = marked.parse(unit.ejercicio);
+  const explain = document.getElementById('explanation')
+  const example = document.getElementById('example')
+  const exam = document.getElementById('Exam')  
+  const parseExplain = marked.parse(unit.explicacion);
+  const parseExample = marked.parse(unit.ejemplo);
+  const parseExam = marked.parse(unit.ejercicio);
+
+  explain.innerHTML = parseExplain
+  example.innerHTML = parseExample
+  exam.innerHTML = parseExam
+
+  renderExplanation(explain,parseExplain);
+  renderExplanation(example,parseExample);
+  renderExplanation(exam,parseExam);
+  
+
 }
 
 // Manejadores para los botones de navegación
@@ -68,3 +90,26 @@ document.getElementById('next-unit').addEventListener('click', function() {
   }
   loadContent(currentModuleIndex, currentUnitIndex);
 });
+
+function renderExplanation(explanationElement, textContent) {
+  explanationElement.innerHTML = textContent;
+  
+  // Agregar botón de copiar a cada bloque de código
+  explanationElement.querySelectorAll('pre').forEach((block) => {
+    const copyButton = document.createElement('button');
+    copyButton.textContent = 'Copy';
+    copyButton.classList.add('copy-btn');
+    
+    // Copiar solo el contenido del bloque de código sin el botón
+    copyButton.onclick = () => copyToClipboard(block.querySelector('code').textContent);
+    
+    block.style.position = 'relative'; // Asegura que el botón esté bien posicionado
+    block.appendChild(copyButton);     // Añadir botón dentro del bloque <pre>
+  });
+}
+
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    alert('Copied to clipboard!');
+  });
+}
