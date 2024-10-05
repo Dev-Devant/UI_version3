@@ -7,10 +7,11 @@ let isResizing = false;
 marked.setOptions({
   highlight: function (code, lang) {
     if (lang && hljs.getLanguage(lang)) {
-      return hljs.highlight(lang, code).value;
+      return hljs.highlight(code, { language: lang }).value;
     }
     return hljs.highlightAuto(code).value;
-  }
+  },
+  langPrefix: 'hljs language-', // Clase para los lenguajes de `highlight.js`
 });
 
 resizeHandle.addEventListener('mousedown', (e) => {
@@ -43,32 +44,50 @@ let currentCourse;
 function loadContent(moduleIndex, unitIndex) {
   const module = currentCourse[moduleIndex];
   const unit = module.temas[unitIndex];
+
+  // Calcular el progreso considerando módulos y unidades
+  const totalModules = currentCourse.length;
   
+  // Obtener la cantidad total de unidades en todos los módulos
+  let totalUnitsInCourse = 0;
+  currentCourse.forEach(mod => totalUnitsInCourse += mod.temas.length);
+  
+  // Obtener la posición actual en términos de unidades
+  let unitsSoFar = 0;
+  for (let i = 0; i < moduleIndex; i++) {
+    unitsSoFar += currentCourse[i].temas.length;
+  }
+  unitsSoFar += unitIndex + 1;
+
+  // Calcular el progreso total (porcentaje de unidades completadas)
+  const overallProgress = unitsSoFar / totalUnitsInCourse;
+
   // Actualizar la barra de progreso
-  document.getElementById('progress').style.width = `${(moduleIndex / module.length) * 100}%`;
+  document.getElementById('progress').style.width = `${overallProgress * 100}%`;
   
   // Actualizar los nombres de curso y módulo
   document.getElementById('course-name').textContent = module.titulo;
   document.getElementById('module-title').textContent = unit.Tema;
   
   // Actualizar las secciones de explicación, ejemplo y ejercicio
-  const explain = document.getElementById('explanation')
-  const example = document.getElementById('example')
-  const exam = document.getElementById('Exam')  
+  const explain = document.getElementById('explanation');
+  const example = document.getElementById('example');
+  const exam = document.getElementById('Exam');
+  
   const parseExplain = marked.parse(unit.explicacion);
   const parseExample = marked.parse(unit.ejemplo);
   const parseExam = marked.parse(unit.ejercicio);
 
-  explain.innerHTML = parseExplain
-  example.innerHTML = parseExample
-  exam.innerHTML = parseExam
+  explain.innerHTML = parseExplain;
+  example.innerHTML = parseExample;
+  exam.innerHTML = parseExam;
 
-  renderExplanation(explain,parseExplain);
-  renderExplanation(example,parseExample);
-  renderExplanation(exam,parseExam);
-  
-
+  renderExplanation(explain, parseExplain);
+  renderExplanation(example, parseExample);
+  renderExplanation(exam, parseExam);
 }
+
+
 
 // Manejadores para los botones de navegación
 document.getElementById('prev-unit').addEventListener('click', function() {
