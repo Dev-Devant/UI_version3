@@ -76,20 +76,28 @@ document.getElementById('prev-unit').addEventListener('click', function() {
     currentUnitIndex--;
   } else if (currentModuleIndex > 0) {
     currentModuleIndex--;
-    currentUnitIndex = currentCourse.module[currentModuleIndex].temas.length - 1;
+    currentUnitIndex = currentCourse[currentModuleIndex].temas.length - 1;
+  } else {
+    console.log("Estás en el inicio del curso");
+    return; 
   }
   loadContent(currentModuleIndex, currentUnitIndex);
 });
 
+
 document.getElementById('next-unit').addEventListener('click', function() {
   if (currentUnitIndex < currentCourse[currentModuleIndex].temas.length - 1) {
     currentUnitIndex++;
-  } else if (currentModuleIndex < currentCourse[currentModuleIndex].length - 1) {
+  } else if (currentModuleIndex < currentCourse.length - 1) {
     currentModuleIndex++;
     currentUnitIndex = 0;
+  } else {
+    console.log("Has completado el curso");
+    return; 
   }
   loadContent(currentModuleIndex, currentUnitIndex);
 });
+
 
 function renderExplanation(explanationElement, textContent) {
   explanationElement.innerHTML = textContent;
@@ -103,8 +111,8 @@ function renderExplanation(explanationElement, textContent) {
     // Copiar solo el contenido del bloque de código sin el botón
     copyButton.onclick = () => copyToClipboard(block.querySelector('code').textContent);
     
-    block.style.position = 'relative'; // Asegura que el botón esté bien posicionado
-    block.appendChild(copyButton);     // Añadir botón dentro del bloque <pre>
+    block.style.position = 'relative'; 
+    block.appendChild(copyButton);     
   });
 }
 
