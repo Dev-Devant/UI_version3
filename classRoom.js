@@ -11,7 +11,7 @@ marked.setOptions({
     }
     return hljs.highlightAuto(code).value;
   },
-  langPrefix: 'hljs language-', // Clase para los lenguajes de `highlight.js`
+  langPrefix: 'hljs language-', 
 });
 
 resizeHandle.addEventListener('mousedown', (e) => {

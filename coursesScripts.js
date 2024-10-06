@@ -50,7 +50,7 @@ function renderizarCursos(state) {
         // Evento para cerrar el curso
         const closeBtn = cursoElement.querySelector('.close-btn');
         closeBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evitar que el clic en el botón afecte al expandir/encoger
+            e.stopPropagation(); 
             cursoElement.classList.remove('expanded');
         });
 
@@ -60,7 +60,7 @@ function renderizarCursos(state) {
         const nextSection = document.getElementById(`section${4}`);
         const enterCourseBtn = cursoElement.querySelector('.enter-course-btn');
         enterCourseBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evitar que el clic afecte al expandir/encoger
+            e.stopPropagation(); 
             nextSection.classList.add("slide-down");
             previousSection.classList.add("slide-up");
             nextSection.offsetHeight;
@@ -68,13 +68,11 @@ function renderizarCursos(state) {
             previousSection.classList.remove("active");
             nextSection.classList.remove("slide-up", "slide-down");
             nextSection.classList.add("active");
-            console.log(`Entrando al curso: ${curso.title}`);
+
             currentCourse = curso.content.modulos
             currentModuleIndex = 0
             currentUnitIndex = 0
             loadContent(0, 0)
-            // Aquí puedes redirigir a una página específica del curso
-            // window.location.href = `/curso/${curso.id}`; // Ejemplo de redirección
         });
     });
 }
