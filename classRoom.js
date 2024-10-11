@@ -158,15 +158,20 @@ document.getElementById('next-unit').addEventListener('click', function() {
 document.addEventListener('DOMContentLoaded', function() {
   const textInputTask = document.getElementById('chat-message');
   const feedback = document.getElementById('feedback');
+  
 
-  document.getElementById('send-message').addEventListener('click', function() {
+  document.getElementById('send-message').addEventListener('click', async function() {
+    const task = document.getElementById('Exam').textContent;
     const message = textInputTask.value.trim();
-    console.log(message);
+    addReviewTaskWait()
+    const response = await sendTask(message,task)
+    if (response != null){
+      feedback.textContent = response.IAResp;
+    }else{
+      feedback.textContent =  'Server Internal error, resend';
+    }
     
-    // Mostrar el feedback
-    feedback.textContent = `Se envió el mensaje: "${message}"`;
-
-    // Limpiar el input
+    removeReviewTaskWait()
     textInputTask.value = '';
   });
 
@@ -176,3 +181,25 @@ document.addEventListener('DOMContentLoaded', function() {
     
   });
 });
+
+
+function addReviewTaskWait() {
+  const feedback = document.getElementById('feedback');
+
+
+  const waitingMessage = document.createElement('div');
+  waitingMessage.classList.add('message', 'waiting');
+  waitingMessage.innerHTML = 'Esperando mensaje...';
+  waitingMessage.id = 'waitingMessageTask'; 
+  feedback.appendChild(waitingMessage);
+  feedback.scrollTop = chatMessages.scrollHeight;
+}
+
+function removeReviewTaskWait() {
+  const feedback = document.getElementById('feedback');
+
+  const waitingMessage = document.getElementById('waitingMessageTask');
+  if (waitingMessage) {
+    feedback.removeChild(waitingMessage);
+  }
+}

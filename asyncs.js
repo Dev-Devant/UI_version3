@@ -242,44 +242,22 @@ async function reExplainRequest(textToReexplain) {
   return true
 }
 
-async function sendTask(solve) {
+async function sendTask(solve,task) {
   const url = server+"/api/taskSubmit"; 
   const sessionKey = localStorage.getItem('SessionKey')
-  const task = slides[state.currentSlide].content
-  const data = { sessionKey,task, solve }; 
+  const data = {sessionKey,task, solve }; 
 
   try {
       const response = await postData(url, data);
       if (response.message) {         
-        const format = formatMessage(response.IAResp.toString())
-        const filter = removeFormatting(response.IAResp.toString())
-        InterpreterVoice(filter)
-        state.chatMessages.push({ sender: 'Artek AI', message: format});
-        if(response.past){
-          slides[state.currentSlide].completed = true
-          state.currentSlide += 1
-          updateCourseTraker(state.currentCourseId)
-          if(state.currentSlide >= slides.length){
-            state.currentSlide = 0
-            slides = []
-            slides.push({
-              Module: 'module',
-              unit: '',   
-              content: 'Has terminado! puedes ir a tu certificacion',
-              color : '#07295f',
-              task: false
-            })
-          }
-        }
-        render()
-        return false
+        return response
       } else {
           console.log("Error en la respuesta del servidor:", response.error);
       }
   } catch (error) {
       console.error("Error al realizar la solicitud :", error);
   }
-  return true
+  return null
 }
 async function RequestCreate(instructions) {
   const url = server+"/api/CreateCourseFromUser"; 
