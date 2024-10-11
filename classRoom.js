@@ -140,3 +140,39 @@ function copyToClipboard(text) {
     alert('Copied to clipboard!');
   });
 }
+
+
+document.getElementById('next-unit').addEventListener('click', function() {
+  if (currentUnitIndex < currentCourse[currentModuleIndex].temas.length - 1) {
+    currentUnitIndex++;
+  } else if (currentModuleIndex < currentCourse.length - 1) {
+    currentModuleIndex++;
+    currentUnitIndex = 0;
+  } else {
+    console.log("Has completado el curso");
+    return; 
+  }
+  loadContent(currentModuleIndex, currentUnitIndex);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const textInputTask = document.getElementById('chat-message');
+  const feedback = document.getElementById('feedback');
+
+  document.getElementById('send-message').addEventListener('click', function() {
+    const message = textInputTask.value.trim();
+    console.log(message);
+    
+    // Mostrar el feedback
+    feedback.textContent = `Se envió el mensaje: "${message}"`;
+
+    // Limpiar el input
+    textInputTask.value = '';
+  });
+
+  document.getElementById('upload-file').addEventListener('click', function() {
+    
+      console.log('file' + textInputTask.value.trim());
+    
+  });
+});
