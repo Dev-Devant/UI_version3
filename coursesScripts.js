@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursandoBtn = document.getElementById('cursandoBtn');
     const completadosBtn = document.getElementById('completadosBtn');
 
-
-
     cursandoBtn.addEventListener('click', () => {
         cursandoBtn.classList.add('active');
         completadosBtn.classList.remove('active');
@@ -70,6 +68,7 @@ function renderizarCursos(state) {
             nextSection.classList.add("active");
 
             currentCourse = curso.content.modulos
+            currentCourseData = curso.enroledData.temas
             currentModuleIndex = 0
             currentUnitIndex = 0
             loadContent(0, 0)

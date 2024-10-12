@@ -1,6 +1,6 @@
-const sideChat = document.getElementById('side-chat');
-const resizeHandle = document.querySelector('.resize-handle');
-const mainContent = document.querySelector('.main-content');
+const sideChat = document.getElementById("side-chat");
+const resizeHandle = document.querySelector(".resize-handle");
+const mainContent = document.querySelector(".main-content");
 
 let isResizing = false;
 
@@ -11,7 +11,7 @@ marked.setOptions({
     }
     return hljs.highlightAuto(code).value;
   },
-  langPrefix: 'hljs language-', 
+  langPrefix: "hljs language-",
 });
 
 resizeHandle.addEventListener('mousedown', (e) => {
@@ -39,41 +39,34 @@ function stopResize() {
 let currentModuleIndex = 0;
 let currentUnitIndex = 0;
 let currentCourse;
+let currentCourseData;
 
 // Función para cargar los datos en la interfaz
 function loadContent(moduleIndex, unitIndex) {
   const module = currentCourse[moduleIndex];
   const unit = module.temas[unitIndex];
 
-  // Calcular el progreso considerando módulos y unidades
-  const totalModules = currentCourse.length;
-  
   // Obtener la cantidad total de unidades en todos los módulos
   let totalUnitsInCourse = 0;
-  currentCourse.forEach(mod => totalUnitsInCourse += mod.temas.length);
-  
+  currentCourse.forEach((mod) => (totalUnitsInCourse += mod.temas.length));
+
   // Obtener la posición actual en términos de unidades
-  let unitsSoFar = 0;
-  for (let i = 0; i < moduleIndex; i++) {
-    unitsSoFar += currentCourse[i].temas.length;
-  }
-  unitsSoFar += unitIndex + 1;
+  const unitsSoFar = getAbsoluteUnitIndex();
 
   // Calcular el progreso total (porcentaje de unidades completadas)
   const overallProgress = unitsSoFar / totalUnitsInCourse;
 
   // Actualizar la barra de progreso
-  document.getElementById('progress').style.width = `${overallProgress * 100}%`;
-  
+  document.getElementById("progress").style.width = `${overallProgress * 100}%`;
+
   // Actualizar los nombres de curso y módulo
-  document.getElementById('course-name').textContent = module.titulo;
-  document.getElementById('module-title').textContent = unit.Tema;
-  
+  document.getElementById("course-name").textContent = module.titulo;
+  document.getElementById("module-title").textContent = unit.Tema;
   // Actualizar las secciones de explicación, ejemplo y ejercicio
-  const explain = document.getElementById('explanation');
-  const example = document.getElementById('example');
-  const exam = document.getElementById('Exam');
-  
+  const explain = document.getElementById("explanation");
+  const example = document.getElementById("example");
+  const exam = document.getElementById("Exam");
+
   const parseExplain = marked.parse(unit.explicacion);
   const parseExample = marked.parse(unit.ejemplo);
   const parseExam = marked.parse(unit.ejercicio);
@@ -87,118 +80,143 @@ function loadContent(moduleIndex, unitIndex) {
   renderExplanation(exam, parseExam);
 }
 
-
+function getAbsoluteUnitIndex() {
+  let absoluteIndex = 0;
+  for (let i = 0; i < currentModuleIndex; i++) {
+    absoluteIndex += currentCourse[i].temas.length; // Suma las unidades de módulos anteriores
+  }
+  absoluteIndex += currentUnitIndex; // Suma la unidad actual
+  return absoluteIndex;
+}
 
 // Manejadores para los botones de navegación
-document.getElementById('prev-unit').addEventListener('click', function() {
+document.getElementById("prev-unit").addEventListener("click", function () {
   if (currentUnitIndex > 0) {
     currentUnitIndex--;
   } else if (currentModuleIndex > 0) {
     currentModuleIndex--;
     currentUnitIndex = currentCourse[currentModuleIndex].temas.length - 1;
   } else {
-    console.log("Estás en el inicio del curso");
-    return; 
+    return;
   }
   loadContent(currentModuleIndex, currentUnitIndex);
 });
 
-
-document.getElementById('next-unit').addEventListener('click', function() {
+document.getElementById("next-unit").addEventListener("click", function () {
+  let absoluteIndex = getAbsoluteUnitIndex();
+  if (!currentCourseData[absoluteIndex + 1]) {
+    alert("Completa la actividad para continuar el curso");
+    return;
+  }
   if (currentUnitIndex < currentCourse[currentModuleIndex].temas.length - 1) {
     currentUnitIndex++;
   } else if (currentModuleIndex < currentCourse.length - 1) {
     currentModuleIndex++;
     currentUnitIndex = 0;
   } else {
-    console.log("Has completado el curso");
-    return; 
+    return;
   }
+
   loadContent(currentModuleIndex, currentUnitIndex);
 });
 
-
 function renderExplanation(explanationElement, textContent) {
   explanationElement.innerHTML = textContent;
-  
+
   // Agregar botón de copiar a cada bloque de código
-  explanationElement.querySelectorAll('pre').forEach((block) => {
-    const copyButton = document.createElement('button');
-    copyButton.textContent = 'Copy';
-    copyButton.classList.add('copy-btn');
-    
+  explanationElement.querySelectorAll("pre").forEach((block) => {
+    const copyButton = document.createElement("button");
+    copyButton.textContent = "Copy";
+    copyButton.classList.add("copy-btn");
+
     // Copiar solo el contenido del bloque de código sin el botón
-    copyButton.onclick = () => copyToClipboard(block.querySelector('code').textContent);
-    
-    block.style.position = 'relative'; 
-    block.appendChild(copyButton);     
+    copyButton.onclick = () =>
+      copyToClipboard(block.querySelector("code").textContent);
+
+    block.style.position = "relative";
+    block.appendChild(copyButton);
   });
 }
 
 function copyToClipboard(text) {
   navigator.clipboard.writeText(text).then(() => {
-    alert('Copied to clipboard!');
+    alert("Copied to clipboard!");
   });
 }
 
-
-document.getElementById('next-unit').addEventListener('click', function() {
-  if (currentUnitIndex < currentCourse[currentModuleIndex].temas.length - 1) {
-    currentUnitIndex++;
-  } else if (currentModuleIndex < currentCourse.length - 1) {
-    currentModuleIndex++;
-    currentUnitIndex = 0;
-  } else {
-    console.log("Has completado el curso");
-    return; 
-  }
-  loadContent(currentModuleIndex, currentUnitIndex);
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  const textInputTask = document.getElementById('chat-message');
-  const feedback = document.getElementById('feedback');
+document.addEventListener("DOMContentLoaded", function () {
+  const textInputTask = document.getElementById("chat-message");
+  const feedback = document.getElementById("feedback");
+  const sendButton = document.getElementById("send-message")
   
+  sendButton.addEventListener("click", async function () {
+      const task = document.getElementById("Exam").textContent;
+      const message = textInputTask.value.trim();
 
-  document.getElementById('send-message').addEventListener('click', async function() {
-    const task = document.getElementById('Exam').textContent;
-    const message = textInputTask.value.trim();
-    addReviewTaskWait()
-    const response = await sendTask(message,task)
-    if (response != null){
-      feedback.textContent = response.IAResp;
-    }else{
-      feedback.textContent =  'Server Internal error, resend';
-    }
-    
-    removeReviewTaskWait()
-    textInputTask.value = '';
-  });
+      if (message == "" || message == null) {
+        return;
+      }
 
-  document.getElementById('upload-file').addEventListener('click', function() {
-    
-      console.log('file' + textInputTask.value.trim());
-    
+      feedback.innerHTML = "";
+      addReviewTaskWait();
+      const response = await sendTask(message, task);
+      if (response != null) {
+        if (response.IAResp.includes("APROBED")) {
+          response.IAResp = response.IAResp.replace("APROBED", "");
+          if (
+            currentUnitIndex <
+            currentCourse[currentModuleIndex].temas.length - 1
+          ) {
+            currentUnitIndex++;
+          } else if (currentModuleIndex < currentCourse.length - 1) {
+            currentModuleIndex++;
+            currentUnitIndex = 0;
+          }
+
+          let absoluteIndex = getAbsoluteUnitIndex();
+          currentCourseData[absoluteIndex] = true;
+          loadContent(currentModuleIndex, currentUnitIndex);
+          
+          removeReviewTaskWait();
+          textInputTask.value = "";
+          return;
+        }
+        feedback.innerHTML = marked.parse(response.IAResp);
+      } else {
+        feedback.textContent = "Server Internal error, resend";
+      }
+
+      removeReviewTaskWait();
+      textInputTask.value = "";
+    });
+
+    textInputTask.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendButton.click();
+      }
+    });
+  /*document.getElementById("upload-file").addEventListener("click", function () {
+    alert("Aun no esta disponible");
   });
+  */
 });
-
 
 function addReviewTaskWait() {
-  const feedback = document.getElementById('feedback');
+  const feedback = document.getElementById("feedback");
 
-
-  const waitingMessage = document.createElement('div');
-  waitingMessage.classList.add('message', 'waiting');
-  waitingMessage.innerHTML = 'Esperando mensaje...';
-  waitingMessage.id = 'waitingMessageTask'; 
+  const waitingMessage = document.createElement("div");
+  waitingMessage.classList.add("message", "waiting");
+  waitingMessage.innerHTML = "Revisando...";
+  waitingMessage.id = "waitingMessageTask";
   feedback.appendChild(waitingMessage);
   feedback.scrollTop = chatMessages.scrollHeight;
 }
 
 function removeReviewTaskWait() {
-  const feedback = document.getElementById('feedback');
+  const feedback = document.getElementById("feedback");
 
-  const waitingMessage = document.getElementById('waitingMessageTask');
+  const waitingMessage = document.getElementById("waitingMessageTask");
   if (waitingMessage) {
     feedback.removeChild(waitingMessage);
   }
