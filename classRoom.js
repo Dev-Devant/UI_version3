@@ -14,24 +14,24 @@ marked.setOptions({
   langPrefix: "hljs language-",
 });
 
-resizeHandle.addEventListener('mousedown', (e) => {
-    isResizing = true;
-    document.addEventListener('mousemove', resize);
-    document.addEventListener('mouseup', stopResize);
+resizeHandle.addEventListener("mousedown", (e) => {
+  isResizing = true;
+  document.addEventListener("mousemove", resize);
+  document.addEventListener("mouseup", stopResize);
 });
 
 function resize(e) {
-    if (isResizing) {
-        const newWidth = window.innerWidth - e.clientX;
-        sideChat.style.width = `${newWidth}px`;
-        mainContent.style.marginRight = `${newWidth}px`; // Ajusta el margen del contenido
-    }
+  if (isResizing) {
+    const newWidth = window.innerWidth - e.clientX;
+    sideChat.style.width = `${newWidth}px`;
+    mainContent.style.marginRight = `${newWidth}px`; // Ajusta el margen del contenido
+  }
 }
 
 function stopResize() {
-    isResizing = false;
-    document.removeEventListener('mousemove', resize);
-    document.removeEventListener('mouseup', stopResize);
+  isResizing = false;
+  document.removeEventListener("mousemove", resize);
+  document.removeEventListener("mouseup", stopResize);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -40,6 +40,7 @@ let currentModuleIndex = 0;
 let currentUnitIndex = 0;
 let currentCourse;
 let currentCourseData;
+let courseId;
 
 // Función para cargar los datos en la interfaz
 function loadContent(moduleIndex, unitIndex) {
@@ -104,7 +105,7 @@ document.getElementById("prev-unit").addEventListener("click", function () {
 
 document.getElementById("next-unit").addEventListener("click", function () {
   let absoluteIndex = getAbsoluteUnitIndex();
-  if (!currentCourseData[absoluteIndex + 1]) {
+  if (!currentCourseData[absoluteIndex + 1] && currentCourseData[absoluteIndex + 1] != null) {
     alert("Completa la actividad para continuar el curso");
     return;
   }
@@ -147,55 +148,55 @@ function copyToClipboard(text) {
 document.addEventListener("DOMContentLoaded", function () {
   const textInputTask = document.getElementById("chat-message");
   const feedback = document.getElementById("feedback");
-  const sendButton = document.getElementById("send-message")
-  
-  sendButton.addEventListener("click", async function () {
-      const task = document.getElementById("Exam").textContent;
-      const message = textInputTask.value.trim();
+  const sendButton = document.getElementById("send-message");
 
-      if (message == "" || message == null) {
+  sendButton.addEventListener("click", async function () {
+    const task = document.getElementById("Exam").textContent;
+    const message = textInputTask.value.trim();
+
+    if (message == "" || message == null) {
+      return;
+    }
+
+    feedback.innerHTML = "";
+    addReviewTaskWait();
+    const response = await sendTask(message, task);
+    if (response != null) {
+      if (response.IAResp.includes("APROBED")) {
+        response.IAResp = response.IAResp.replace("APROBED", "");
+        if (
+          currentUnitIndex <
+          currentCourse[currentModuleIndex].temas.length - 1
+        ) {
+          currentUnitIndex++;
+        } else if (currentModuleIndex < currentCourse.length - 1) {
+          currentModuleIndex++;
+          currentUnitIndex = 0;
+        }
+
+        let absoluteIndex = getAbsoluteUnitIndex();
+        currentCourseData[absoluteIndex] = true;
+        loadContent(currentModuleIndex, currentUnitIndex);
+        updateCourseTraker(courseId);
+        removeReviewTaskWait();
+        textInputTask.value = "";
         return;
       }
+      feedback.innerHTML = marked.parse(response.IAResp);
+    } else {
+      feedback.textContent = "Server Internal error, resend";
+    }
 
-      feedback.innerHTML = "";
-      addReviewTaskWait();
-      const response = await sendTask(message, task);
-      if (response != null) {
-        if (response.IAResp.includes("APROBED")) {
-          response.IAResp = response.IAResp.replace("APROBED", "");
-          if (
-            currentUnitIndex <
-            currentCourse[currentModuleIndex].temas.length - 1
-          ) {
-            currentUnitIndex++;
-          } else if (currentModuleIndex < currentCourse.length - 1) {
-            currentModuleIndex++;
-            currentUnitIndex = 0;
-          }
+    removeReviewTaskWait();
+    textInputTask.value = "";
+  });
 
-          let absoluteIndex = getAbsoluteUnitIndex();
-          currentCourseData[absoluteIndex] = true;
-          loadContent(currentModuleIndex, currentUnitIndex);
-          
-          removeReviewTaskWait();
-          textInputTask.value = "";
-          return;
-        }
-        feedback.innerHTML = marked.parse(response.IAResp);
-      } else {
-        feedback.textContent = "Server Internal error, resend";
-      }
-
-      removeReviewTaskWait();
-      textInputTask.value = "";
-    });
-
-    textInputTask.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        sendButton.click();
-      }
-    });
+  textInputTask.addEventListener("keypress", function (e) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendButton.click();
+    }
+  });
   /*document.getElementById("upload-file").addEventListener("click", function () {
     alert("Aun no esta disponible");
   });

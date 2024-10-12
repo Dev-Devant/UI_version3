@@ -198,15 +198,17 @@ async function getCourses() {
   return false
 }
 
-async function updateCourseTraker(courseId,seen) {
+async function updateCourseTraker(courseId) {
   const url = server+"/api/courseEnrrolData"; 
   const sessionKey = localStorage.getItem('SessionKey')
-  const data = { sessionKey,courseId,seen }; 
+  const data = { sessionKey,courseId }; 
 
   try {
       const response = await postData(url, data);
       if (response.message) {   
-      
+        if(response.end){
+          getCourses()
+        }
       } else {
         console.log("Error en la respuesta del servidor:", response.error);
       }

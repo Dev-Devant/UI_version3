@@ -71,6 +71,7 @@ function renderizarCursos(state) {
             currentCourseData = curso.enroledData.temas
             currentModuleIndex = 0
             currentUnitIndex = 0
+            courseId = curso.id
             loadContent(0, 0)
         });
     });
