@@ -249,30 +249,69 @@
 
       <section id="section4">
         <link rel="stylesheet" href="stylesSections/classRoomStyle.css">
-
+        <link rel="stylesheet" href="stylesSections/AudioPlayerStyle.css">
         <div class="main-content">
           <div class="progress-bar">
               <div class="progress" id="progress"></div>
           </div>
           <div class="course-navigation">
-              <h2 id="course-name">No hay cursos carfados</h2>
+              <h2 id="course-name">No hay cursos cargados</h2>
               <div>
-                  <button id="prev-unit">Unidad Anterior</button>
-                  <button id="next-unit">Siguiente Unidad</button>
+                <button id="download-PDF" class="nav-class-top" >PDF 📄</button>
+                <button id="prev-unit" class="nav-class-top" >⏮</button>
+                <button id="next-unit" class="nav-class-top" >⏭</button>
               </div>
           </div>
-          <h3 id="module-title">Módulo X - Unidad Y</h3>
+
+          <script src="AudioPlayerClassRoom.js"></script>
+          <h3 id="module-title"></h3>
+          
+          <div class="audio-player">
+            <div class="song-info">
+                <span id="songTitle">Explicacion</span>
+            </div>
+            <div class="controls">
+                <button class="control-btn" id="playPauseBtnExp">▶</button>
+            </div>
+            <div class="volume-control">
+                <span class="volume-icon">🔊</span>
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+            </div>
+          </div>          
           <div class="content-section" id="explanation">
-              <h4>Explicación</h4>
-              <p>Aquí va el contenido explicativo de la unidad.</p>
+              
           </div>
+          <div class="audio-player">
+            <div class="song-info">
+                <span id="songTitle">Ejemplo</span>
+            </div>
+            <div class="controls">
+                <button class="control-btn" id="playPauseBtnExa">▶</button>
+            </div>
+            <div class="volume-control">
+                <span class="volume-icon">🔊</span>
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+            </div>
+          </div>
+
           <div class="content-section" id="example">
-              <h4>Ejemplo</h4>
-              <p>Aquí va un ejemplo relacionado con la unidad.</p>
+              
+          </div>
+
+          <div class="audio-player">
+            <div class="song-info">
+                <span id="songTitle">Actividad</span>
+            </div>
+            <div class="controls">
+                <button class="control-btn" id="playPauseBtnTask">▶</button>
+            </div>
+            <div class="volume-control">
+                <span class="volume-icon">🔊</span>
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+            </div>
           </div>
           <div class="content-section" id="Exam">
-              <h4>examen Adicional</h4>
-              <p>consigna.</p>
+              
           </div>
           <div class="chat-input">
             <textarea id="chat-message" placeholder="Escribe tu mensaje..."></textarea>
@@ -299,25 +338,8 @@
       <div class="side-chat" id="side-chat">
         <div class="resize-handle"></div>
         <div id="chatContainer">
-          <div id="chatMessages"></div>
           <div class="input-area">
             <div class="input-container">
-              <button id="toggleMute">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M12 5v14m-7-7h2l5 5V7L7 12H5"></path> <!-- Mic on -->
-                  <line x1="23" x2="1" y1="1" y2="23" id="muteLine" style="display:none"></line> <!-- Mute line -->
-                </svg>
-              </button>
               <button id="toggleVoice">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

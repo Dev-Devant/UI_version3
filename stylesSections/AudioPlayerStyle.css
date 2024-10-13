@@ -1,0 +1,52 @@
+.audio-player {
+    background: linear-gradient(90deg, #1e1e1e, #2a2a2a);
+    border-radius: 30px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    padding: 10px 20px;
+    width: 70vh;
+    display: flex;
+    align-items: center;
+}
+.song-info {
+    flex: 0 0 15vh;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    color: #3498db;
+    text-shadow: 0 0 5px #3498db;
+}
+.controls {
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+}
+.control-btn {
+    background-color: transparent;
+    border: none;
+    color: #3498db;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+}
+.control-btn:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #3498db;
+}
+.volume-control {
+    display: flex;
+    align-items: center;
+    width: 50;
+    margin-right: 20px;
+}
+.volume-icon {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #3498db;
+}

@@ -8,7 +8,7 @@
     margin-bottom: 10px;
 }
 .progress {
-    background-color: #4CAF50;
+    background-color: #3498db;
     height: 100%;
     width: 0%;
     transition: width 0.5s ease-in-out;
@@ -20,7 +20,13 @@
     margin-bottom: 20px;
 }
 .content-section {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    border: 2px solid #ccc; /* Borde del recuadro */
+    border-radius: 15px; /* Bordes redondeados */
+    padding: 15px; /* Espaciado dentro del recuadro */
+    background-color: #2c2c2c; /* Color de fondo */
+    color: white; /* Color de texto para contraste */
 }
 
 #chat-message {
@@ -206,3 +212,22 @@
     overflow-y: auto;            /* Scroll vertical si es necesario */
   }
   
+
+  /*   nav butons top */
+
+
+  .nav-class-top {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: #074e50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.nav-class-top:hover {
+    background-color: #2493d4;
+}
