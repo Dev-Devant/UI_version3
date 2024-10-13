@@ -17,39 +17,30 @@ function togglePlayPauseExp() {
     const explain = document.getElementById("explanation");
     const playPauseBtn = document.getElementById('playPauseBtnExp')
 
-    if(audioPlay){
-        InterpreterVoice(explain.textContent)
-        playPauseBtn.innerHTML = '⏸'
-    }else{
-        stopVoice() 
-        playPauseBtn.innerHTML = '▶'
-    }
-    audioPlay = !audioPlay
+    renderButtonAndTalk(playPauseBtn, explain)
+
 }
 function togglePlayPauseExa() {    
     const example = document.getElementById("example");
     const playPauseBtn = document.getElementById('playPauseBtnExa')
 
-    if(audioPlay){
-        InterpreterVoice(example.textContent)
-        playPauseBtn.innerHTML = '⏸'
-    }else{
-        stopVoice() 
-        playPauseBtn.innerHTML = '▶'
-    }
-    audioPlay = !audioPlay
+    renderButtonAndTalk(playPauseBtn, example)
+
 }
 
 function togglePlayPauseTask() {    
     const exam = document.getElementById("Exam");
     const playPauseBtn = document.getElementById('playPauseBtnTask')
+    renderButtonAndTalk(playPauseBtn, exam)
+}
 
+function renderButtonAndTalk(button, talk){
     if(audioPlay){
-        InterpreterVoice(exam.textContent)
-        playPauseBtn.innerHTML = '⏸'
+        InterpreterVoice(talk.textContent)
+        button.innerHTML = '■'
     }else{
         stopVoice() 
-        playPauseBtn.innerHTML = '▶'
+        button.innerHTML = '▶'
     }
     audioPlay = !audioPlay
 }
