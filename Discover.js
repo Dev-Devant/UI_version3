@@ -41,7 +41,7 @@ function createCourseListContainer(courses) {
     const courseItem = document.createElement("div");
     courseItem.className = "course-item";
     courseItem.style.cssText = `
-        background-color: #042a2b;
+        background-color: #2c2c2c;
         color: white;
         padding: 20px;
         border-radius: 8px;

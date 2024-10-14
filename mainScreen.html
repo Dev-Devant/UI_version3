@@ -33,7 +33,7 @@
       <div class="logo-container">
         <img src="/Logo Artek.png" alt="Logo" class="logo" />
       </div>
-      <div ></div>
+      <div></div>
         <h1 id="currentModeDisplay"> Descubrir </h1>
       </div>
       <div class="user-info">
@@ -43,9 +43,29 @@
           src="/Avatar.png?height=24&width=24"
           alt="User Avatar"
           class="user-avatar"
+          id="avatar"
         />
+        <div class="dropdown-menu" id="dropdownMenu">
+          <ul>
+            <li id="configOption">Configuración</li>
+            <li id="certificateOption">Certificado</li>
+            <li id="paymentsOption">Pagos</li>
+            <li id="logoutOption">Logout</li>
+          </ul>
+        </div>
       </div>
     </header>
+    
+    <div id="popupPanel" class="popup hidden">
+      <div class="popup-content" id="popupContent"></div>
+    </div>
+    
+
+    <link rel="stylesheet" href="stylesSections/deployMenu.css">
+<div id="popupPanel" class="popup hidden">
+  <div class="popup-content" id="popupContent"></div>
+</div>
+    <script src="deployMenu.js"></script>
     <nav id="sidebar">
       <button id="toggleSidebar" aria-label="Toggle Sidebar">
         <span class="arrow">&#9664;</span>
