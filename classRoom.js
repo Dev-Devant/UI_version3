@@ -92,36 +92,35 @@ function loadContent(moduleIndex, unitIndex) {
                 <line x1="22" y1="2" x2="11" y2="13"></line>
                 <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
               </svg>
-            </button>`
-  const uploadTask = document.getElementById("TaskSubmit")
-  const value = currentCourseData[getAbsoluteUnitIndex()]
-   if(!value){
-    uploadTask.innerHTML = uploadTaskCode
+            </button>`;
+  const uploadTask = document.getElementById("TaskSubmit");
+  const value = currentCourseData[getAbsoluteUnitIndex()];
+  if (!value) {
+    uploadTask.innerHTML = uploadTaskCode;
     const textInputTask = document.getElementById("chat-message");
     const feedback = document.getElementById("feedback");
     const sendButton = document.getElementById("send-message");
-  
+
     sendButton.addEventListener("click", async function () {
       const task = document.getElementById("Exam").textContent;
       const message = textInputTask.value.trim();
-  
+
       if (message == "" || message == null) {
         return;
       }
-  
+
       feedback.innerHTML = "";
       addReviewTaskWait();
       const response = await sendTask(message, task);
-      if(!response){
+      if (!response) {
         textInputTask.value = "";
         removeReviewTaskWait();
         loadContent(currentModuleIndex, currentUnitIndex);
-        return
+        return;
         // soluciono el bug que aparece la tarea y no deberia
       }
 
       if (response != null) {
-
         if (response.IAResp.includes("APROBED")) {
           response.IAResp = response.IAResp.replace("APROBED", "");
           if (
@@ -133,7 +132,7 @@ function loadContent(moduleIndex, unitIndex) {
             currentModuleIndex++;
             currentUnitIndex = 0;
           }
-  
+
           let absoluteIndex = getAbsoluteUnitIndex();
           currentCourseData[absoluteIndex] = true;
           loadContent(currentModuleIndex, currentUnitIndex);
@@ -146,22 +145,20 @@ function loadContent(moduleIndex, unitIndex) {
       } else {
         feedback.textContent = "Server Internal error, resend";
       }
-  
+
       removeReviewTaskWait();
       textInputTask.value = "";
     });
-  
+
     textInputTask.addEventListener("keypress", function (e) {
       if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
         sendButton.click();
       }
     });
-  }else{
-    uploadTaskCode.innerHTML = ''
+  } else {
+    uploadTaskCode.innerHTML = "";
   }
-
-
 }
 
 function getAbsoluteUnitIndex() {
@@ -183,13 +180,16 @@ function previewUnit() {
   } else {
     return;
   }
-  stopVoice()
+  stopVoice();
   loadContent(currentModuleIndex, currentUnitIndex);
 }
 
 function nextUnit() {
   let absoluteIndex = getAbsoluteUnitIndex();
-  if (!currentCourseData[absoluteIndex] && currentCourseData[absoluteIndex] != null) {
+  if (
+    !currentCourseData[absoluteIndex] &&
+    currentCourseData[absoluteIndex] != null
+  ) {
     alert("Completa la actividad para continuar el curso");
     return;
   }
@@ -201,14 +201,46 @@ function nextUnit() {
   } else {
     return;
   }
-  stopVoice()
+  stopVoice();
   loadContent(currentModuleIndex, currentUnitIndex);
 }
 
-document.getElementById("prev-unit").addEventListener("click",previewUnit );
+document.getElementById("prev-unit").addEventListener("click", previewUnit);
 document.getElementById("prev-unita").addEventListener("click", previewUnit);
-document.getElementById("next-unit").addEventListener("click",nextUnit );
+document.getElementById("next-unit").addEventListener("click", nextUnit);
 document.getElementById("next-unita").addEventListener("click", nextUnit);
+
+document.getElementById("download-PDF").addEventListener("click", function () {
+  alert('Disponible pronto!')
+  return
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF("p", "mm", "a4"); // Formato A4
+
+  const courseTitle = document.getElementById("currentModeDisplay").textContent;
+  const explicacionPage = document.getElementById("explanation");
+  const ExamplePage = document.getElementById("example");
+
+  pdf.html(explicacionPage, {
+    x: 10, // Margen izquierdo
+    y: 10, // Margen superior
+    width: 190, // Ancho disponible en A4 (210 mm de ancho - márgenes)
+    windowWidth: document.body.scrollWidth,
+    callback: function (doc) {
+      // Agregar una nueva página
+      pdf.addPage();
+      // Agregar contenido de la segunda página
+      pdf.html(ExamplePage, {
+        x: 10,
+        y: 10,
+        width: 190,
+        windowWidth: document.body.scrollWidth,
+        callback: function (doc) {
+          doc.save(courseTitle + ".pdf");
+        },
+      });
+    },
+  });
+});
 
 function renderExplanation(explanationElement, textContent) {
   explanationElement.innerHTML = textContent;
