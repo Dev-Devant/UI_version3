@@ -174,7 +174,7 @@ function getAbsoluteUnitIndex() {
 }
 
 // Manejadores para los botones de navegación
-document.getElementById("prev-unit").addEventListener("click", function () {
+function previewUnit() {
   if (currentUnitIndex > 0) {
     currentUnitIndex--;
   } else if (currentModuleIndex > 0) {
@@ -185,9 +185,9 @@ document.getElementById("prev-unit").addEventListener("click", function () {
   }
   stopVoice()
   loadContent(currentModuleIndex, currentUnitIndex);
-});
+}
 
-document.getElementById("next-unit").addEventListener("click", function () {
+function nextUnit() {
   let absoluteIndex = getAbsoluteUnitIndex();
   if (!currentCourseData[absoluteIndex] && currentCourseData[absoluteIndex] != null) {
     alert("Completa la actividad para continuar el curso");
@@ -203,38 +203,12 @@ document.getElementById("next-unit").addEventListener("click", function () {
   }
   stopVoice()
   loadContent(currentModuleIndex, currentUnitIndex);
-});
+}
 
-document.getElementById("prev-unita").addEventListener("click", function () {
-  if (currentUnitIndex > 0) {
-    currentUnitIndex--;
-  } else if (currentModuleIndex > 0) {
-    currentModuleIndex--;
-    currentUnitIndex = currentCourse[currentModuleIndex].temas.length - 1;
-  } else {
-    return;
-  }
-  stopVoice()
-  loadContent(currentModuleIndex, currentUnitIndex);
-});
-
-document.getElementById("next-unita").addEventListener("click", function () {
-  let absoluteIndex = getAbsoluteUnitIndex();
-  if (!currentCourseData[absoluteIndex] && currentCourseData[absoluteIndex] != null) {
-    alert("Completa la actividad para continuar el curso");
-    return;
-  }
-  if (currentUnitIndex < currentCourse[currentModuleIndex].temas.length - 1) {
-    currentUnitIndex++;
-  } else if (currentModuleIndex < currentCourse.length - 1) {
-    currentModuleIndex++;
-    currentUnitIndex = 0;
-  } else {
-    return;
-  }
-  stopVoice()
-  loadContent(currentModuleIndex, currentUnitIndex);
-});
+document.getElementById("prev-unit").addEventListener("click",previewUnit );
+document.getElementById("prev-unita").addEventListener("click", previewUnit);
+document.getElementById("next-unit").addEventListener("click",nextUnit );
+document.getElementById("next-unita").addEventListener("click", nextUnit);
 
 function renderExplanation(explanationElement, textContent) {
   explanationElement.innerHTML = textContent;
@@ -259,7 +233,6 @@ function copyToClipboard(text) {
     alert("Copied to clipboard!");
   });
 }
-
 
 function addReviewTaskWait() {
   const feedback = document.getElementById("feedback");
