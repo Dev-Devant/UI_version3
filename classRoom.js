@@ -53,11 +53,7 @@ function loadContent(moduleIndex, unitIndex) {
 
   // Obtener la posición actual en términos de unidades
   const unitsSoFar = getAbsoluteUnitIndex();
-
-  // Calcular el progreso total (porcentaje de unidades completadas)
   const overallProgress = unitsSoFar / totalUnitsInCourse;
-
-  // Actualizar la barra de progreso
   document.getElementById("progress").style.width = `${overallProgress * 100}%`;
 
   // Actualizar los nombres de curso y módulo
@@ -79,6 +75,93 @@ function loadContent(moduleIndex, unitIndex) {
   renderExplanation(explain, parseExplain);
   renderExplanation(example, parseExample);
   renderExplanation(exam, parseExam);
+
+  const uploadTaskCode = `<textarea id="chat-message" placeholder="Escribe tu mensaje..."></textarea>
+              <!--<button id="upload-file">Subir Archivo</button> -->
+            <button id="send-message"><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>`
+  const uploadTask = document.getElementById("TaskSubmit")
+  const value = currentCourseData[getAbsoluteUnitIndex()]
+   if(!value){
+    uploadTask.innerHTML = uploadTaskCode
+    const textInputTask = document.getElementById("chat-message");
+    const feedback = document.getElementById("feedback");
+    const sendButton = document.getElementById("send-message");
+  
+    sendButton.addEventListener("click", async function () {
+      const task = document.getElementById("Exam").textContent;
+      const message = textInputTask.value.trim();
+  
+      if (message == "" || message == null) {
+        return;
+      }
+  
+      feedback.innerHTML = "";
+      addReviewTaskWait();
+      const response = await sendTask(message, task);
+      if(!response){
+        textInputTask.value = "";
+        removeReviewTaskWait();
+        loadContent(currentModuleIndex, currentUnitIndex);
+        return
+        // soluciono el bug que aparece la tarea y no deberia
+      }
+
+      if (response != null) {
+
+        if (response.IAResp.includes("APROBED")) {
+          response.IAResp = response.IAResp.replace("APROBED", "");
+          if (
+            currentUnitIndex <
+            currentCourse[currentModuleIndex].temas.length - 1
+          ) {
+            currentUnitIndex++;
+          } else if (currentModuleIndex < currentCourse.length - 1) {
+            currentModuleIndex++;
+            currentUnitIndex = 0;
+          }
+  
+          let absoluteIndex = getAbsoluteUnitIndex();
+          currentCourseData[absoluteIndex] = true;
+          loadContent(currentModuleIndex, currentUnitIndex);
+          updateCourseTraker(courseId);
+          removeReviewTaskWait();
+          textInputTask.value = "";
+          return;
+        }
+        feedback.innerHTML = marked.parse(response.IAResp);
+      } else {
+        feedback.textContent = "Server Internal error, resend";
+      }
+  
+      removeReviewTaskWait();
+      textInputTask.value = "";
+    });
+  
+    textInputTask.addEventListener("keypress", function (e) {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        sendButton.click();
+      }
+    });
+  }else{
+    uploadTaskCode.innerHTML = ''
+  }
+
+
 }
 
 function getAbsoluteUnitIndex() {
@@ -100,12 +183,13 @@ document.getElementById("prev-unit").addEventListener("click", function () {
   } else {
     return;
   }
+  stopVoice()
   loadContent(currentModuleIndex, currentUnitIndex);
 });
 
 document.getElementById("next-unit").addEventListener("click", function () {
   let absoluteIndex = getAbsoluteUnitIndex();
-  if (!currentCourseData[absoluteIndex + 1] && currentCourseData[absoluteIndex + 1] != null) {
+  if (!currentCourseData[absoluteIndex] && currentCourseData[absoluteIndex] != null) {
     alert("Completa la actividad para continuar el curso");
     return;
   }
@@ -117,7 +201,38 @@ document.getElementById("next-unit").addEventListener("click", function () {
   } else {
     return;
   }
+  stopVoice()
+  loadContent(currentModuleIndex, currentUnitIndex);
+});
 
+document.getElementById("prev-unita").addEventListener("click", function () {
+  if (currentUnitIndex > 0) {
+    currentUnitIndex--;
+  } else if (currentModuleIndex > 0) {
+    currentModuleIndex--;
+    currentUnitIndex = currentCourse[currentModuleIndex].temas.length - 1;
+  } else {
+    return;
+  }
+  stopVoice()
+  loadContent(currentModuleIndex, currentUnitIndex);
+});
+
+document.getElementById("next-unita").addEventListener("click", function () {
+  let absoluteIndex = getAbsoluteUnitIndex();
+  if (!currentCourseData[absoluteIndex] && currentCourseData[absoluteIndex] != null) {
+    alert("Completa la actividad para continuar el curso");
+    return;
+  }
+  if (currentUnitIndex < currentCourse[currentModuleIndex].temas.length - 1) {
+    currentUnitIndex++;
+  } else if (currentModuleIndex < currentCourse.length - 1) {
+    currentModuleIndex++;
+    currentUnitIndex = 0;
+  } else {
+    return;
+  }
+  stopVoice()
   loadContent(currentModuleIndex, currentUnitIndex);
 });
 
@@ -145,63 +260,6 @@ function copyToClipboard(text) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const textInputTask = document.getElementById("chat-message");
-  const feedback = document.getElementById("feedback");
-  const sendButton = document.getElementById("send-message");
-
-  sendButton.addEventListener("click", async function () {
-    const task = document.getElementById("Exam").textContent;
-    const message = textInputTask.value.trim();
-
-    if (message == "" || message == null) {
-      return;
-    }
-
-    feedback.innerHTML = "";
-    addReviewTaskWait();
-    const response = await sendTask(message, task);
-    if (response != null) {
-      if (response.IAResp.includes("APROBED")) {
-        response.IAResp = response.IAResp.replace("APROBED", "");
-        if (
-          currentUnitIndex <
-          currentCourse[currentModuleIndex].temas.length - 1
-        ) {
-          currentUnitIndex++;
-        } else if (currentModuleIndex < currentCourse.length - 1) {
-          currentModuleIndex++;
-          currentUnitIndex = 0;
-        }
-
-        let absoluteIndex = getAbsoluteUnitIndex();
-        currentCourseData[absoluteIndex] = true;
-        loadContent(currentModuleIndex, currentUnitIndex);
-        updateCourseTraker(courseId);
-        removeReviewTaskWait();
-        textInputTask.value = "";
-        return;
-      }
-      feedback.innerHTML = marked.parse(response.IAResp);
-    } else {
-      feedback.textContent = "Server Internal error, resend";
-    }
-
-    removeReviewTaskWait();
-    textInputTask.value = "";
-  });
-
-  textInputTask.addEventListener("keypress", function (e) {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      sendButton.click();
-    }
-  });
-  /*document.getElementById("upload-file").addEventListener("click", function () {
-    alert("Aun no esta disponible");
-  });
-  */
-});
 
 function addReviewTaskWait() {
   const feedback = document.getElementById("feedback");

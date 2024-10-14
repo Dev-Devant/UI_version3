@@ -130,7 +130,8 @@ body,html {
 }
 
 .create-button.loading {
-  animation: loading 1s infinite; /* Aplicar animación de carga */
+  opacity: 0.8; /* Opacidad inicial */
+  animation: pulse 1.5s infinite; /* Aplicar animación de carga */
 }
 
 /* Animación de carga */

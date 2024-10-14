@@ -251,17 +251,19 @@
         <link rel="stylesheet" href="stylesSections/classRoomStyle.css">
         <link rel="stylesheet" href="stylesSections/AudioPlayerStyle.css">
         <div class="main-content">
-          <div class="progress-bar">
-              <div class="progress" id="progress"></div>
-          </div>
-          <div class="course-navigation">
-              <h2 id="course-name">No hay cursos cargados</h2>
-              <div>
-                <button id="download-PDF" class="nav-class-top" >PDF 📄</button>
-                <button id="prev-unit" class="nav-class-top" >⏮</button>
-                <button id="next-unit" class="nav-class-top" >⏭</button>
+            <div class="fixed-container">
+              <div class="progress-bar">
+                  <div class="progress" id="progress"></div>
               </div>
-          </div>
+              <div class="course-navigation">
+                  <h2 id="course-name">No hay cursos cargados</h2>
+                  <div>
+                      <button id="download-PDF" class="nav-class-top">PDF 📄</button>
+                      <button id="prev-unit" class="nav-class-top">⏮</button>
+                      <button id="next-unit" class="nav-class-top">⏭</button>
+                  </div>
+              </div>
+            </div>
 
           <script src="AudioPlayerClassRoom.js"></script>
           <h3 id="module-title"></h3>
@@ -313,26 +315,7 @@
           <div class="content-section" id="Exam">
               
           </div>
-          <div class="chat-input">
-            <textarea id="chat-message" placeholder="Escribe tu mensaje..."></textarea>
-              <!--<button id="upload-file">Subir Archivo</button> -->
-              <button id="send-message"><svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <line x1="22" y1="2" x2="11" y2="13"></line>
-                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-              </svg>
-            
-            </button>
-          </div>
+          <div class="chat-input" id = "TaskSubmit">      </div>
           <div id="feedback" class="feedback-area"></div>
       </div>
       <div class="side-chat" id="side-chat">
@@ -385,6 +368,17 @@
         </div>
       </div>
       </div>
+      <div class="fixed-container">
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        <div class="course-navigation">
+            <div>
+                <button id="prev-unita" class="nav-class-top">⏮</button>
+                <button id="next-unita" class="nav-class-top">⏭</button>
+            </div>
+        </div>
+      </div>
       <script src="classRoom.js"></script>
       </section>
 
@@ -395,7 +389,5 @@
         <p>Contenido de la sección 5</p>
       </section>
     </main>
-
-    <script src="script.js"></script>
   </body>
 </html>

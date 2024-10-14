@@ -248,6 +248,9 @@ async function sendTask(solve,task) {
   const url = server+"/api/taskSubmit"; 
   const sessionKey = localStorage.getItem('SessionKey')
   const data = {sessionKey,task, solve }; 
+  if( currentCourseData[getAbsoluteUnitIndex()]){
+    return false
+  }
 
   try {
       const response = await postData(url, data);

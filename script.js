@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         showSection(sectionNumber);
       }
       updateCurrentModeDisplay(this.textContent);
+      stopVoice()
     });
   });
 
