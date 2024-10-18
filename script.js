@@ -88,3 +88,15 @@ function showSection(sectionNumber) {
   }, 500);
 }
 document.addEventListener("DOMContentLoaded", updateHeader);
+
+
+(async function() {
+  const success = await checkSession(localStorage.getItem('SessionKey'));
+  console.log("Success:", success);
+
+  if(success != false){
+    getCourses();
+  }else{
+    window.location.href = "login/loginScreen.html";
+  }
+})();

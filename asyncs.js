@@ -62,6 +62,7 @@ async function login(username, password) {
     console.error("Error al realizar la solicitud (login):", error);
     return false
   }
+  
 }
 
 
