@@ -100,9 +100,8 @@ function updateStateUser() {
 }
 
 // Llama a esta función cuando la aplicación se inicie
-const success = await checkSession(localStorage.getItem('SessionKey'))
-
-if(success){
+const success = checkSession(localStorage.getItem('SessionKey'))
+if(success != false){
 
   getCourses()
 
