@@ -100,5 +100,13 @@ function updateStateUser() {
 }
 
 // Llama a esta función cuando la aplicación se inicie
-checkSession(localStorage.getItem('SessionKey'))
-getCourses()
+const success =checkSession(localStorage.getItem('SessionKey'))
+
+if(success){
+
+  getCourses()
+
+}else{
+  window.location.href = "login/loginScreen.html";
+
+}

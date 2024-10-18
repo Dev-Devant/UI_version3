@@ -127,6 +127,7 @@ async function checkSession(SessionKey) {
     console.error("Error al realizar la solicitud (sessioncheck):", error);
     return false
   }
+  return false
 }
 
 // Función para enviar un chat
@@ -286,8 +287,10 @@ async function RequestCreate(instructions) {
   return false
 }
 
-async function logOutSession(SessionKey) {
+async function logOutSession() {
   const url = server+"/api/logout"; 
+  const SessionKey = localStorage.getItem('SessionKey')
+
   const data = { SessionKey }; 
 
   try {
