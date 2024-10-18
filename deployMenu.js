@@ -21,7 +21,14 @@ document.addEventListener("DOMContentLoaded",function(){
         state.user = null
         saveUserData(state.user)
         window.location.href = "index.html";
+        return
       }
+      if(content == "Certificado"){
+        window.open('https://dev-devant.github.io/CertifyFRont/', '_blank');
+        return        
+      }
+
+
       popupContent.textContent = content;
       popupPanel.classList.remove('hidden');
     }
