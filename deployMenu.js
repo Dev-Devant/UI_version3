@@ -13,6 +13,15 @@ document.addEventListener("DOMContentLoaded",function(){
     
     // Función para mostrar el popup con contenido personalizado
     function showPopup(content) {
+      console.log('activated: ' + content)
+      if(content == "Logout"){
+        logOutSession()
+        localStorage.setItem('SessionKey', null)
+        state.isLoggedIn = false;
+        state.user = null
+        saveUserData(state.user)
+        window.location.href = "index.html";
+      }
       popupContent.textContent = content;
       popupPanel.classList.remove('hidden');
     }
