@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded",function(){
       dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
     });
     
+    
     // Función para mostrar el popup con contenido personalizado
     function showPopup(content) {
       console.log('activated: ' + content)
