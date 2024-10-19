@@ -329,7 +329,7 @@ async function changePassRequest(password,newPassword,checkPassword) {
   try {
       const response = await postData(url, data);
       if (response.message) {   
-        handleLogout()
+        logOutSession()
         return true
       } else {
         console.log("Error en la respuesta del servidor:", response.error);
@@ -349,7 +349,7 @@ async function changenameRequest(newName) {
       if (response.message) { 
         
         state.user.name = newName
-        handleLogout()
+        logOutSession()
         return true
       } else {
         console.log("Error en la respuesta del servidor:", response.error);

@@ -130,3 +130,126 @@
 .button:hover {
     background-color: #2493d4;
 }
+
+/* billing  */
+
+/* Contenedor principal */
+.container {
+    position: fixed;
+    inset: 4rem 0 2.5rem;
+    background-color: rgba(8, 9, 10, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    overflow-y: auto;
+  }
+  
+  /* Modal interno */
+  .modal {
+    background-color: #042a2b;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 48rem;
+    margin: 0 1rem;
+  }
+  
+  /* Cabecera */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  /* Título */
+  .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #4bc6ff;
+  }
+  
+  /* Contenedor de opciones de suscripción */
+  .subscription-options {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .subscription-options {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .subscription-options {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  /* Opción de suscripción */
+  .subscription-option {
+    border: 1px solid #68696e;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+  
+  .subscription-option.selected {
+    border-color: #4bc6ff;
+    background-color: rgba(75, 198, 255, 0.1);
+  }
+  
+  .subscription-option:hover {
+    border-color: #4bc6ff;
+  }
+  
+  /* Título de la opción */
+  .option-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #4bc6ff;
+    margin-bottom: 0.25rem;
+  }
+  
+  /* Precio */
+  .option-price {
+    font-size: 0.75rem;
+    color: #bbbec6;
+    margin-bottom: 0.25rem;
+  }
+  
+  /* Características */
+  .option-features {
+    font-size: 0.75rem;
+    color: #bbbec6;
+  }
+  
+  .truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Botón de pago */
+  .button {
+    background-color: #4bc6ff;
+    color: #08090a;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #2493d4;
+  }
+  
+  .gap-2 {
+    gap: 0.5rem;
+  }
+  
