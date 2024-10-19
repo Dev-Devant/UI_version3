@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded",function(){
     const avatar = document.getElementById('avatar');
     const dropdownMenu = document.getElementById('dropdownMenu');
     const popupPanel = document.getElementById('popupPanel');
-    const popupContent = document.getElementById('popupContent');
     
     // Mostrar/ocultar menú al hacer clic en el avatar
     avatar.addEventListener('click', () => {
@@ -28,10 +27,14 @@ document.addEventListener("DOMContentLoaded",function(){
         window.open('https://dev-devant.github.io/CertifyFRont/', '_blank');
         return        
       }
-
-
-      popupContent.textContent = content;
-      popupPanel.classList.remove('hidden');
+      if(content == "Configuración"){
+        createPopupCongfig()
+        return
+      }
+      if(content == "Pagos"){
+        createPopupPay()
+        return
+      }
     }
     
     // Asignar acciones a cada opción del menú
@@ -48,3 +51,40 @@ document.addEventListener("DOMContentLoaded",function(){
     });
 
 })
+
+function createPopupCongfig() {
+  // Crear el elemento del popup
+  const popup = document.createElement('div');
+  popup.className = 'popup';
+  popup.textContent = "This is a demo";
+
+  // Estilos inline para el popup
+
+  // Agregar el popup al body
+  document.body.appendChild(popup);
+
+  // Mostrar el popup
+  setTimeout(() => {
+    popup.style.opacity = '1';
+  }, 10);
+
+}
+
+
+function createPopupPay() {
+  // Crear el elemento del popup
+  const popup = document.createElement('div');
+  popup.className = 'popup';
+  popup.textContent = "This is a demo";
+
+  // Estilos inline para el popup
+
+  // Agregar el popup al body
+  document.body.appendChild(popup);
+
+  // Mostrar el popup
+  setTimeout(() => {
+    popup.style.opacity = '1';
+  }, 10);
+
+}
