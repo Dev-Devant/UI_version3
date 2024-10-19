@@ -38,7 +38,7 @@
     border-radius: 5px; 
     z-index: 1000;
     transition: opacity 0.5s;
-    width: 80vi;
+    width: 30vi;
     height: 90vh;
 }
 
@@ -46,4 +46,87 @@
   .hidden {
     display: none;
   }
-  
+  /* aaaaaaaaaaaaaaaa */
+
+  .menu-overlay {
+    z-index: 2;
+    position: fixed;
+    inset: 4rem 0 2.5rem 0;
+    background-color: rgba(8, 9, 10, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.menu-container {
+    background-color: #042a2b;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 48rem;
+    margin: 0 1rem;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.menu-header h2 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #4bc6ff;
+}
+
+.close-button {
+    color: #bbbec6;
+    transition: color 0.2s;
+}
+
+.close-button:hover {
+    color: #4bc6ff;
+}
+
+.menu-content h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #4bc6ff;
+    margin-bottom: 0.5rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-field {
+    padding: 0.5rem;
+    background-color: #08090A;
+    border: 1px solid #68696e;
+    border-radius: 0.25rem;
+    color: #bbbec6;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.input-field:focus {
+    border-color: #4bc6ff;
+}
+
+.button {
+    background-color: #4bc6ff;
+    color: #08090A;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.button:hover {
+    background-color: #2493d4;
+}
