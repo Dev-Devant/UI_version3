@@ -1,13 +1,30 @@
 const appVersion = 'Closed Beta 1.4.3 : Si algo falla, por favor reiniciar y reportar el bug. Agradecemos cualquier comentario y sugerencia'
 
-const subscriptionOptions = [
-    { id: 1, name: 'Basic', price: 9.99, features: ['Feature 1', 'Feature 2'] },
-    { id: 2, name: 'Standard', price: 19.99, features: ['Feature 1', 'Feature 2', 'Feature 3'] },
-    { id: 3, name: 'Premium', price: 29.99, features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'] },
-    { id: 4, name: 'Pro', price: 39.99, features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4', 'Feature 5'] },
-    { id: 5, name: 'Enterprise', price: 59.99, features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4', 'Feature 5', 'Feature 6'] },
-    { id: 6, name: 'Ultimate', price: 99.99, features: ['All Features', 'Priority Support', 'Custom Integration'] },
+let subscriptionOptions = [
+    { id: 1, name: 'Basic', price: 9.99, features: ['3 cursos','Ideal para dar tus primeros pasos'] },
+    { id: 2, name: 'Standard', price: 29.99, features: ['10 cursos', 'Ideal para soporte academico'] },
+    { id: 3, name: 'Premium', price: 49.99, features: ['20 cursos', 'Para una formacion completa'] },
+    { id: 4, name: 'Ultimate', price: 39.99, features: ['Subscripcion mensual (Cancela cuando quieras!)', 'Cursos ilimitados!', 'Conferencias virtuales incluidas', 'Foro de soporte'] },
+    { id: 5, name: 'Enterprise', price: 'Contactar con ventas', features: ['Formaciones para equipos de trabajo y empresas', 'seguimiento y control de grupos y conocmiento adquiridos', 'diseño de curriculas asistido'] }
 ];
+
+const subscriptionOptionsWithTax = subscriptionOptions.map(option => {
+  if (typeof option.price === 'number') {
+      const tax = option.price * 0.6; 
+      const totalPrice = option.price + tax; 
+
+      return {
+          ...option,
+          totalPrice: totalPrice.toFixed(2) 
+      };
+  }
+  return option; 
+});
+
+subscriptionOptions = subscriptionOptionsWithTax
+
+
+
 
 const availableVoices = [
     { id: 'voice1', name: 'Emma (Female)' },

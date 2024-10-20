@@ -149,5 +149,18 @@
     <script src="../asyncs.js"></script>
     <script src="../main.js"></script>
     <script src="loginLogic.js"></script>
+    <script>
+      async function init() {
+        if (localStorage.getItem("SessionKey")) {
+          const currentKey = localStorage.getItem("SessionKey");
+          const isOnSession = await checkSession(currentKey);
+          if (isOnSession) {
+            window.location.href = "../mainScreen.html";
+            return
+          }
+        }
+      }
+      init();
+    </script>
   </body>
 </html>

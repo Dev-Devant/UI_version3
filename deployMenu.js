@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const avatar = document.getElementById("avatar");
   const dropdownMenu = document.getElementById("dropdownMenu");
-  const popupPanel = document.getElementById("popupPanel");
-
   // Mostrar/ocultar menú al hacer clic en el avatar
   avatar.addEventListener("click", () => {
     dropdownMenu.style.display =
@@ -47,16 +45,11 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("logoutOption")
     .addEventListener("click", () => showPopup("Logout"));
-
-  // Cerrar popup al hacer clic fuera de él
-  document.addEventListener("click", (e) => {
-    if (!popupPanel.contains(e.target) && !avatar.contains(e.target)) {
-      popupPanel.classList.add("hidden");
-    }
-  });
 });
 
 function createPopupCongfig() {
+
+
   const popup = document.createElement("div");
   popup.className = "popup";
 
@@ -102,6 +95,7 @@ function createPopupCongfig() {
 
   Close.addEventListener("click", function () {
     popup.remove();
+    return
   });
 
   ChangePass.addEventListener("click", function (event) {
@@ -135,6 +129,7 @@ function createPopupCongfig() {
 }
 
 function createPopupPay() {
+
   const popup = document.createElement("div");
   popup.className = "popup";
 
@@ -160,7 +155,7 @@ function createPopupPay() {
                       state.selectedOption === option ? "selected" : ""
                     }" data-option-id="${option.id}">
                         <h3 class="option-title">${option.name}</h3>
-                        <p class="option-price">$${option.price.toFixed(2)} / month</p>
+                        <p class="option-price">USD ${option.price} / Mes</p>
                         <ul class="option-features">
                             ${option.features
                               .map((feature) => 
@@ -182,6 +177,7 @@ function createPopupPay() {
   const closeBtn = document.getElementById("closeBilling");
   closeBtn.addEventListener("click", function () {
     popup.remove();
+    return
   });
 
   // Agregar event listeners a las opciones de suscripción
@@ -189,7 +185,7 @@ function createPopupPay() {
     option.addEventListener('click', function () {
       const optionId = this.getAttribute('data-option-id');
       const selectedOption = subscriptionOptions.find(opt => opt.id == optionId);
-      createPopupOption(selectedOption);  // Llamar la función con la opción seleccionada
+      createPopupOption(selectedOption);  
     });
   });
 
@@ -202,14 +198,22 @@ function createPopupPay() {
 
 
 function createPopupOption(data) {
-  const prevPop = document.getElementById("Poppins"); 
-  prevPop.remove();    
+  const prevPopup = document.querySelector(".popup");
+  if (prevPopup) {
+    prevPopup.remove();
+  }  
   const popup = document.createElement("div");
   popup.className = "popup";
 
   const completeBuild = `
     <div class="container">
         <div class="modal">
+                  <button id="BackBilling" class="text-[#bbbec6] hover:text-[#4bc6ff] transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                        <polyline points="15 18 9 12 15 6"/> <!-- Flecha hacia la izquierda -->
+                    </svg>
+                  </button>
+
                   <button id="closeBilling" class="text-[#bbbec6] hover:text-[#4bc6ff] transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
                         <line x1="18" x2="6" y1="6" y2="18"/>
@@ -220,9 +224,7 @@ function createPopupOption(data) {
                 <h3 class="text-lg font-semibold text-[#4bc6ff] mb-2">Selected Plan: ${
                   data.name
                 }</h3>
-                <p class="text-[#bbbec6] mb-4">Price: $${data.price.toFixed(
-                  2
-                )} / month</p>
+                <p class="text-[#bbbec6] mb-4">Price: $${data.price} / month</p>
                 <h4 class="text-sm font-semibold text-[#4bc6ff] mb-2">Choose Payment Method</h4>
                 <div class="flex flex-wrap gap-2">
                     <button class="button">Pay with Stripe</button>
@@ -240,10 +242,17 @@ function createPopupOption(data) {
 
   Close.addEventListener("click", function () {
     popup.remove();
+    return
   });
 
+  const Back = document.getElementById("BackBilling");
 
-  // Mostrar el popup
+  Back.addEventListener("click", function () {
+    popup.remove();
+    createPopupPay()
+    return
+  });
+
   setTimeout(() => {
     popup.style.opacity = "1";
   }, 10);
