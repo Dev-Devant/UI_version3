@@ -3,20 +3,31 @@ const appVersion = 'Closed Beta 1.4.3 : Si algo falla, por favor reiniciar y rep
 let subscriptionOptions = [
     { id: 1, name: 'Basic', price: 9.99, features: ['3 cursos','Ideal para dar tus primeros pasos'] },
     { id: 2, name: 'Standard', price: 29.99, features: ['10 cursos', 'Ideal para soporte academico'] },
-    { id: 3, name: 'Premium', price: 49.99, features: ['20 cursos', 'Para una formacion completa'] },
-    { id: 4, name: 'Ultimate', price: 39.99, features: ['Subscripcion mensual (Cancela cuando quieras!)', 'Cursos ilimitados!', 'Conferencias virtuales incluidas', 'Foro de soporte'] },
-    { id: 5, name: 'Enterprise', price: 'Contactar con ventas', features: ['Formaciones para equipos de trabajo y empresas', 'seguimiento y control de grupos y conocmiento adquiridos', 'diseño de curriculas asistido'] }
+    { id: 3, name: 'Premium', price: 39.99, features: ['15 cursos', 'Para una formacion completa'] },
+    { id: 4, name: 'Ultimate (Subscripcion)', price: 49.99, features: ['Subscripcion mensual (Cancela cuando quieras!)', 'Cursos ilimitados!', 'Conferencias virtuales incluidas', 'Foro de soporte'] },
+    { id: 5, name: 'Enterprise (Subscripcion)', price: 'Contactar con ventas', features: ['Formaciones para equipos de trabajo y empresas', 'seguimiento y control de grupos y conocmiento adquiridos', 'diseño de curriculas asistido'] }
 ];
 
 const subscriptionOptionsWithTax = subscriptionOptions.map(option => {
   if (typeof option.price === 'number') {
       const tax = option.price * 0.6; 
-      const totalPrice = option.price + tax; 
-
+      const ecomerce = 1.16
+      const totalPrice = (option.price + tax) * ecomerce; 
+      const ars = totalPrice * 1600
       return {
           ...option,
-          totalPrice: totalPrice.toFixed(2) 
+          totalPrice: totalPrice.toFixed(2),
+          ...option,
+          totalARS: ars.toFixed(2) 
       };
+  }
+  else{
+    return {
+      ...option,
+      totalPrice: '?',
+      ...option,
+      totalARS: '?' 
+  };
   }
   return option; 
 });

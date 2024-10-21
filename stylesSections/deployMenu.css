@@ -28,24 +28,22 @@
 /* Estilo para el popup */
 .popup {
   position: fixed;
-  background-color: rgba(44, 44, 44, 0.9);
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
-  z-index: 2;
-  bottom: 5px;
-  right: 5px;
-  color: white;
-  padding: 1px 2px;
-  border-radius: 5px;
+  top: 50%;           
+  left: 50%;          
+  width: 90%;         
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 1000;
-  transition: opacity 0.5s;
-  width: 30vi;
-  height: 90vh;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  transform: translate(-50%, -50%); 
 }
 
 .hidden {
   display: none;
 }
-/* aaaaaaaaaaaaaaaa */
 
 .menu-overlay {
   z-index: 2;
@@ -68,8 +66,8 @@
 }
 
 .menu-header {
-  display: flex;
-  justify-content: space-between;
+  display:flex;
+  justify-content:center;
   align-items: center;
   margin-bottom: 1rem;
 }
@@ -130,28 +128,22 @@
   background-color: #2493d4;
 }
 
-/* billing  */
-
 /* Contenedor principal */
 .container {
+  background-color: #042a2b;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-y: auto;
   position: fixed;
-  inset: 4rem 0 2.5rem;
-  background-color: rgba(8, 9, 10, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 50;
-  overflow-y: auto;
 }
 
 /* Modal interno */
 .modal {
-  background-color: #042a2b;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  width: 100%;
-  max-width: 48rem;
-  margin: 0 1rem;
+  position: relative;
+  overflow-y: auto;
 }
 
 /* Cabecera */
@@ -162,7 +154,6 @@
   margin-bottom: 1rem;
 }
 
-/* Título */
 .title {
   font-size: 1.25rem;
   font-weight: bold;
@@ -193,13 +184,14 @@
 .subscription-option {
   border: 1px solid #68696e;
   border-radius: 0.5rem;
-  padding: 1rem;
+  padding: 0rem 1rem;
   cursor: pointer;
   transition: border-color 0.3s;
   min-width: 200px;
   min-height: 100px;
   box-sizing: border-box;
   overflow: hidden;
+  flex: 1; /* Asegura que las opciones se expandan correctamente */
 }
 
 .subscription-option.selected {
@@ -213,17 +205,14 @@
 
 /* Título de la opción */
 .option-title {
-  font-size: 0.875rem;
-  font-weight: 600;
   color: #4bc6ff;
   margin-bottom: 0.25rem;
 }
 
 /* Precio */
 .option-price {
-  font-size: 0.75rem;
   color: #bbbec6;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.1rem;
 }
 
 /* Características */
@@ -241,23 +230,9 @@
 }
 
 .truncate {
-  white-space: wrap;
+  white-space: normal; /* Cambiado a 'normal' */
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-/* Botón de pago */
-.button {
-  background-color: #4bc6ff;
-  color: #08090a;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.25rem;
-  font-size: 0.875rem;
-  transition: background-color 0.3s;
-}
-
-.button:hover {
-  background-color: #2493d4;
 }
 
 .gap-2 {

@@ -14,11 +14,14 @@ marked.setOptions({
   langPrefix: "hljs language-",
 });
 
-resizeHandle.addEventListener("mousedown", (e) => {
-  isResizing = true;
-  document.addEventListener("mousemove", resize);
-  document.addEventListener("mouseup", stopResize);
-});
+if(resizeHandle){
+  resizeHandle.addEventListener("mousedown", (e) => {
+    isResizing = true;
+    document.addEventListener("mousemove", resize);
+    document.addEventListener("mouseup", stopResize);
+  });
+}
+
 
 function resize(e) {
   if (isResizing) {
