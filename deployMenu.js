@@ -332,9 +332,7 @@ function createPopupMercadoLibre(data) {
   popup.className = "popup";
   const completeBuild = `
     <div class="container">
-      <div class="modal">
-        <div class="modal-header">
-          <h2>Payment Form</h2>
+        <div class="modal">
                   <button id="BackBilling" class="text-[#bbbec6] hover:text-[#4bc6ff] transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
                         <polyline points="15 18 9 12 15 6"/> <!-- Flecha hacia la izquierda -->
@@ -346,15 +344,21 @@ function createPopupMercadoLibre(data) {
                         <line x1="18" x2="6" y1="6" y2="18"/>
                         <line x1="6" x2="18" y1="6" y2="18"/>
                     </svg>
-                  </button>        
-                  <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+                  </button>
+            <div>
+                <h2 class="option-title">${data.name}</h2>
+                <p class="text-[#bbbec6] mb-4">Price: $${data.price} / month</p>
+               
+                        <h6 class="option-price">USD ${data.price} / Mes</h6>
+                        <h4 class="option-price">Total con impuestos: <br> 
+                        USD ${data.totalPrice} </h4>
+                        <br>
+                <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
                     data-preference-id="316205094-246ab804-ab87-4639-9b2a-d6395a7f7a1a" data-source="button">
-                  </script>         
+                  </script>          
+            </div>
         </div>
-      
-      </div>
     </div>
-    
   `;
 
   popup.innerHTML = completeBuild;
