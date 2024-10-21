@@ -37,7 +37,7 @@ function updateHeader() {
   }
 
   if (userTokensElement && state.user && state.user.tokens !== undefined) {
-    userTokensElement.textContent = `${state.user.tokens} tokens`;
+    userTokensElement.textContent = `${state.user.tokens} Cursos`;
   }
 }
 
