@@ -1,11 +1,48 @@
 const appVersion = 'Closed Beta 1.4.3 : Si algo falla, por favor reiniciar y reportar el bug. Agradecemos cualquier comentario y sugerencia'
 
 let subscriptionOptions = [
-    { id: 1, name: 'Basic', price: 9.99, features: ['3 cursos','Ideal para dar tus primeros pasos'] },
-    { id: 2, name: 'Standard', price: 29.99, features: ['10 cursos', 'Ideal para soporte academico'] },
-    { id: 3, name: 'Premium', price: 39.99, features: ['15 cursos', 'Para una formacion completa'] },
-    { id: 4, name: 'Ultimate (Subscripcion)', price: 49.99, features: ['Subscripcion mensual (Cancela cuando quieras!)', 'Cursos ilimitados!', 'Conferencias virtuales incluidas', 'Foro de soporte'] },
-    { id: 5, name: 'Enterprise (Subscripcion)', price: 'Contactar con ventas', features: ['Formaciones para equipos de trabajo y empresas', 'seguimiento y control de grupos y conocmiento adquiridos', 'diseño de curriculas asistido'] }
+    { id: 1, name: 'Basic', 
+      price: 5.99, 
+      tokens: 3,
+      preferenceId: '316205094-246ab804-ab87-4639-9b2a-d6395a7f7a1a',
+      features: [
+        '3 cursos',
+        'Ideal para dar tus primeros pasos'
+      ]},
+    { id: 2, name: 'Standard', 
+      price: 12.99, 
+      tokens: 8,
+      preferenceId: '316205094-37f6b78c-e1db-45f5-ba85-69324e5028a2',
+      features: [
+        '8 cursos', 
+        'Ideal para soporte academico'
+      ] },
+    { id: 3, name: 'Premium', 
+      price: 19.99, 
+      tokens: 15,
+      preferenceId: '316205094-dd86d71a-a2ba-4a9b-96d2-eb8b38553175',
+      features: [
+        '15 cursos', 
+        'Para una formacion completa'
+      ] },
+    { id: 4, name: 'Ultimate (Subscripcion)', 
+      price: 29.99, 
+      preferenceId: '316205094-246ab804-ab87-4639-9b2a-d6395a7f7a1a',
+      tokens: 'inf',
+      features: [
+        'Subscripcion mensual (Cancela cuando quieras!)', 
+        'Cursos ilimitados!', 
+        'Conferencias virtuales incluidas', 
+        'Foro de soporte'
+      ] },
+    { id: 5, name: 'Enterprise (Subscripcion)', 
+      price: 'Contactar con ventas', 
+      tokens: 'inf',
+      features: [
+        'Formaciones para equipos de trabajo y empresas', 
+        'seguimiento y control de grupos y conocmiento adquiridos', 
+        'diseño de curriculas asistido'
+      ] }
 ];
 
 const subscriptionOptionsWithTax = subscriptionOptions.map(option => {
