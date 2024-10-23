@@ -363,7 +363,7 @@ async function changenameRequest(newName) {
 }
 // Función para obtener los pagos usando POST
 async function startTransaction(broker, plan) {
-  const url = serverSales+"/requestTR"; 
+  const url = server+"/api/requestTR"; 
   const SessionKey = localStorage.getItem('SessionKey')
   const data = { SessionKey,broker, plan}; 
   try {
