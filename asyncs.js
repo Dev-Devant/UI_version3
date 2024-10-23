@@ -1,4 +1,5 @@
 const server = "https://artekaimogo-production.up.railway.app"
+const serverSales = "https://arteksellings-production.up.railway.app"
 
 // Función para realizar una solicitud POST
 async function postData(url = "", data = {}) {
@@ -361,23 +362,22 @@ async function changenameRequest(newName) {
   }
 }
 // Función para obtener los pagos usando POST
-async function getPayments() {
-  const url = `${server}/mlPayments`; 
-  const data = {}; 
-
+async function startTransaction(broker, plan) {
+  const url = serverSales+"/requestTR"; 
+  const SessionKey = localStorage.getItem('SessionKey')
+  const data = { SessionKey,broker, plan}; 
   try {
-    const response = await postData(url, data);
-    if (Array.isArray(response)) {
-      console.log('Pagos recibidos:', response);
-
-
-
-    } else {
-      console.error('La respuesta no es una lista de pagos:', response);
-    }
+      const response = await postData(url, data);
+      if (response.message) { 
+        console.log(response)
+  
+        return true
+      } else {
+        console.log("Error en la respuesta del servidor:", response.error);
+        return false
+      }
   } catch (error) {
-    console.error('Error al obtener los pagos:', error);
+      console.error("Error al realizar la solicitud :", error);
+      return false
   }
 }
-
-window.chatter = chatter;

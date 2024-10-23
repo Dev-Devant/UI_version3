@@ -389,6 +389,12 @@ function createPopupMercadoLibre(data) {
     createPopupPay();
     return;
   });
+
+  const payButton = document.getElementById("mercadopago-button-container");
+  payButton.addEventListener("click", async function () {
+     startTransaction('ML', data.name)
+    return;
+  });
   setTimeout(() => {
     popup.style.opacity = "1";
   }, 10);
