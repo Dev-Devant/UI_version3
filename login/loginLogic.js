@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Please agree to the Terms of Use");
       return;
     }
-    register(username, password, newsletter);
+    register(email, password, newsletter);
   });
 
   forgotPass.addEventListener("click", function (e) {
